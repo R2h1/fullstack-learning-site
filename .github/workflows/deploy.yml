@@ -29,7 +29,14 @@ jobs:
         run: |
           set +e
           pnpm install --frozen-lockfile 2>&1 | tee install.log
-          exit ${PIPESTATUS[0]}
+          rc=${PIPESTATUS[0]}
+          if [ $rc -ne 0 ]; then
+            # 把错误输出为 annotation，便于匿名读取排查
+            tail -n 40 install.log | while IFS= read -r line; do
+              echo "::error::${line}"
+            done
+            exit $rc
+          fi
 
       - name: Upload install log on failure
         if: failure()
