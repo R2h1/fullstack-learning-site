@@ -1,0 +1,13 @@
+{
+  "name": "learning-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev . --port 5174",
+    "build": "vitepress build .",
+    "preview": "vitepress preview . --port 5174"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0"
+  }
+}
