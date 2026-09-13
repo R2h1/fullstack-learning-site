@@ -26,7 +26,17 @@ jobs:
           version: 11
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: |
+          set +e
+          pnpm install --frozen-lockfile 2>&1 | tee install.log
+          exit ${PIPESTATUS[0]}
+
+      - name: Upload install log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: install-log
+          path: install.log
 
       - name: Build
         run: pnpm run build
