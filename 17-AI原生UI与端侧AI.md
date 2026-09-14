@@ -21,18 +21,42 @@ AI 交互状态机（对比传统三态）
 - **逐字/逐块渲染**：SSE 边收边渲染（衔接 15 章），而不是等整段
 - **"正在思考"要可感知**：不是无限转圈——显示"正在检索资料""正在整理要点"（告诉用户它在干什么）
 - **部分结果先出**：检索结果先展示、回答后补（降低等待焦虑）
-- **代码骨架**：
+- **可干预**：用户随时能停（AbortController），停了已生成部分保留
 
 ```ts
-// 状态机式交互（Vue 版）
+// 状态机式交互 + 可中断（Vue 3 完整版）
 const state = ref<'idle' | 'thinking' | 'streaming' | 'done' | 'error'>('idle')
-async function ask(question) {
+const answer = ref('')
+const reason = ref('')                    // 阶段性提示："正在检索资料"
+let controller: AbortController | null = null
+
+async function ask(question: string) {
+  controller = new AbortController()
   state.value = 'thinking'
-  const stream = await chatStream(question)
-  state.value = 'streaming'
-  for await (const chunk of stream) { answer.value += chunk }
-  state.value = 'done'
+  reason.value = '正在检索资料'
+  try {
+    const res = await fetch('/api/chat', {           // SSE 流式（衔接 15 章）
+      method: 'POST',
+      body: JSON.stringify({ question }),
+      signal: controller.signal,
+    })
+    const reader = res.body!.getReader()
+    state.value = 'streaming'
+    reason.value = ''
+    const decoder = new TextDecoder()
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      answer.value += decoder.decode(value, { stream: true })
+    }
+    state.value = 'done'
+  } catch (e) {
+    state.value = (e as Error).name === 'AbortError' ? 'done' : 'error'
+    // 用户主动停止 → done（保留已生成部分）；网络错误 → error（可重试）
+  }
 }
+
+function stop() { controller?.abort() }   // 可干预：随时停止生成
 ```
 
 ### 1.2 失败与降级（L3 重点）
@@ -48,6 +72,26 @@ async function ask(question) {
 - **把"AI 可能错"明示**：置信度、来源引用（衔接 15 章引用来源）、"仅供参考"边界
 - 核心：**降级路径要设计，不是异常才想**——"LLM 挂了，返回检索摘要"是一等公民
 
+```ts
+// 断线重连：已渲染的部分不动，续传失败的部分
+async function connectWithRetry(question: string) {
+  let lastId = 0                                // SSE 事件 id（断点续传）
+  for (;;) {
+    try {
+      const res = await fetch(`/api/chat/stream?after=${lastId}`)
+      for await (const ev of readSSE(res.body!)) {
+        if (ev.id) lastId = ev.id
+        answer.value += ev.text                 // 增量追加，不清空
+      }
+      return
+    } catch {
+      await sleep(1000)                         // 简单退避后重连（衔接 15 章）
+      if (aborted) return
+    }
+  }
+}
+```
+
 ### 1.3 人在环中（human-in-the-loop）（L2 核心）
 
 - **AI 给草稿 → 人确认/编辑/撤销**：这是 AI UI 区别于"魔法"的关键——AI 是助手不是自动机
@@ -60,6 +104,23 @@ AI 草稿态（可编辑）→ 用户修改 → 确认发送 → 发送中 → �
   每个阶段用户都有"退出权"（改/取消/重试）
 ```
 
+```ts
+// 高危动作：草稿态 → 人确认 → 才真正发送（衔接 16 章工具安全）
+const draft = ref('')
+const step = ref<'draft' | 'confirm' | 'sending' | 'sent' | 'error'>('draft')
+
+async function confirmSend() {
+  step.value = 'sending'
+  try {
+    await fetch('/api/email', { method: 'POST', body: JSON.stringify({ body: draft.value }) })
+    step.value = 'sent'
+  } catch {
+    step.value = 'error'          // 失败可重试，草稿不丢
+  }
+}
+// UI：确认弹窗展示收件人 + 正文预览，提供"返回编辑"回到草稿态
+```
+
 - 面试点：**不做人在环中的 AI 功能，出事是产品问题不是模型问题**（自动发邮件发错了怪谁？）
 
 ### 1.4 信任与透明
@@ -69,7 +130,13 @@ AI 草稿态（可编辑）→ 用户修改 → 确认发送 → 发送中 → �
 - **生成式 UI**（按需生成表单/面板）时：给"重新生成 / 编辑 / 固定"出口，**别让 AI 替你锁死结构**
 - 反模式：AI 直接改数据库/发消息，用户只在角落看到一个小提示
 
-**必会**：画 AI 交互状态机；为"AI 写邮件"设计完整交互（草稿→编辑→确认→重试）；讲降级是一等公民。
+```ts
+// 引用来源：答案里出现 [1][2]，下方列出可点来源（衔接 15 章）
+const sources = ref<{ id: number; title: string; url: string }[]>([])
+// SSE 收到 source 事件时 push 进 sources；渲染时把答案里的 [n] 变成可点链接
+```
+
+**必会**：画 AI 交互状态机；为"AI 写邮件"设计完整交互（草稿→编辑→确认→重试）；讲降级是一等公民；能写出带中断的流式代码。
 
 ## 2. 端侧 AI（L3，延续本地优先理念）
 
@@ -89,7 +156,7 @@ AI 草稿态（可编辑）→ 用户修改 → 确认发送 → 发送中 → �
 ### 2.2 技术栈（能讲清定位）
 
 - **WebAssembly（WASM）**：可移植字节码，"一次编译处处跑"——把 C++/Rust 的推理引擎跑进浏览器
-- **WebGPU**：浏览器 GPU 通用计算接口（GPU 推理加速的基础）
+- **WebGPU**：浏览器 GPU 通用计算接口（GPU 推理加速的基础，GGML/ONNX 的 WebGPU 后端都靠它）
 - **Transformers.js**：浏览器跑 Hugging Face 模型（Embedding/OCR/语音/小对话）——**与 15 章 RAG 直接衔接（本地 embedding）**
 - **WebLLM 等**：浏览器跑量化 LLM（1-8B）；现状限制：内存占用、首 token 延迟、**量化精度损失**
 
@@ -100,6 +167,15 @@ import { pipeline } from '@huggingface/transformers'
 const embed = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2')
 const vec = await embed('缓存穿透是什么', { pooling: 'mean', normalize: true })
 // 用本地向量做检索 → 数据不出浏览器
+```
+
+```ts
+// WebLLM：浏览器跑量化小模型（能力够才上，成本零）
+import { CreateMLCEngine } from '@mlc-ai/web-llm'
+const engine = await CreateMLCEngine('Qwen2.5-1.5B-Instruct-q4f16_1-MLC')
+const reply = await engine.chat.completions.create({
+  messages: [{ role: 'user', content: '用一句话解释缓存穿透' }],
+})
 ```
 
 ### 2.3 加载与缓存（L3 工程细节）
@@ -117,6 +193,7 @@ async function loadModel() {
 ```
 
 - **懒加载**（进功能才下）、**进度展示**（几十 MB 模型要进度条）、**失败兜底**（下载失败 → 提示重试或云端降级）
+- **模型更新**：模型文件带版本号（`/models/embed-v2.onnx`），发新版换 URL，别让旧缓存永远命中
 
 ### 2.4 端云协同架构（L3 能画能谈）
 
@@ -126,10 +203,23 @@ async function loadModel() {
   → 云端失败 → 降级（缓存结果 / 提示稍后）
 ```
 
+```ts
+// 端云路由：本地先试 → 能力不足/失败 → 云端 → 都失败 → 降级
+async function answerLocalFirst(q: string) {
+  if (!navigator.onLine) return localOnly(q)             // 离线强制本地
+  const local = await tryLocal(q, { timeoutMs: 800 })    // 快路径
+  if (local?.confidence > 0.7) return { ...local, tier: 'local' }
+  const cloud = await tryCloud(q, { budget: 800 })       // 能力不足才上云
+  if (cloud) return { ...cloud, tier: 'cloud' }
+  return fallback(q)                                     // 降级：缓存结果/提示稍后
+}
+// 埋点统计 tier：本地命中率低于阈值 → 这个任务整体切云端
+```
+
 - 决策点：**本地 embedding + 云端生成**是常见组合（检索私密本地做，生成要能力上云）
 - 隐私优先理念延伸："工具全本地、文件不上传" + "AI 也尽量本地"
 
-**必会**：讲端云判据四维；写 Transformers.js embedding；讲加载缓存 + 降级路径；画端云协同图。
+**必会**：讲端云判据四维；写 Transformers.js embedding；讲加载缓存 + 降级路径；画端云协同图；能写出带 tier 统计的端云路由。
 
 ## 3. 面试高频题速答
 
@@ -138,11 +228,13 @@ async function loadModel() {
 | AI 交互状态机 | idle → thinking → streaming → done/error；降级是一等公民 |
 | 人在环中为什么核心 | AI 给草稿人确认/编辑/撤销；高危动作保留人确认 |
 | 降级怎么设计 | 超时/限流/空结果/模型不可用各自兜底，别异常才想 |
+| 流式如何可中断 | AbortController，停止后保留已生成部分 |
 | 信任怎么做 | 引用来源 + 明示能力边界 + 生成式 UI 给"重新生成/编辑/固定" |
 | 端侧 vs 云端判据 | 隐私/离线/成本/延迟 vs 能力；先判断适不适合 |
 | WASM vs WebGPU | 可移植字节码 vs GPU 通用计算 |
 | 本地 embedding 干嘛 | RAG 检索本地做，数据不出浏览器 |
-| 端云协同 | 本地先试 → 云上能力 → 失败降级 |
+| 端云协同 | 本地先试 → 云上能力 → 失败降级；埋点统计 tier |
+| 模型加载注意什么 | 懒加载 + 进度 + 失败兜底 + 版本化 URL |
 
 ## 4. 达标标准
 
@@ -153,4 +245,4 @@ async function loadModel() {
 **L3：**
 - [ ] 用 Transformers.js 在浏览器跑一个本地任务（embedding/OCR/分类任选），量化"加载时间 vs 推理耗时"
 - [ ] 为端侧模型设计加载缓存 + 进度 + 失败兜底，说明降级路径
-- [ ] 画"端云协同"架构图并解释每个决策
+- [ ] 画"端云协同"架构图并解释每个决策，写一段带 tier 统计的端云路由
