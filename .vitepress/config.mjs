@@ -80,6 +80,7 @@ export default defineConfig({
     },
 
     docFooter: { prev: '上一章', next: '下一章' },
+    socialLinks: [{ icon: 'github', link: 'https://github.com/R2h1/fullstack-learning-site' }],
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
