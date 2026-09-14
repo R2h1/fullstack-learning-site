@@ -79,4 +79,3 @@ features:
 - 每章「达标标准」按 L1/L2/L3 勾选；L2 未过的章节不进入下一章。
 - 踩坑与心得就近补进对应章节，不另开文件。
 - 新增章节：写好 `.md` 后在 `.vitepress/config.mjs` 的 sidebar 加一条、`ChapterCards.vue` 加一行。
-- 后端拆分前的未拆分版本存档于 `_backup/backend-pre-split/`（仅供前后对照）。

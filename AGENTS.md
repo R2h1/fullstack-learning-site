@@ -13,7 +13,6 @@
   - `.vitepress/config.mjs`：站点配置（侧边栏、顶部导航、本地搜索）
   - `.vitepress/theme/`：`index.js`（主题入口）、`components/ChapterCards.vue`（首页章节卡片）、`public/logo.svg`（logo/favicon）
   - `index.md`：首页（hero + 能力卡片 + 课程目录 + 能力图谱）
-- **备份**：`_backup/backend-pre-split/` 是后端拆分前的历史版本，**只读不修改**
 
 ## 命令
 
@@ -56,4 +55,3 @@ pnpm run preview   # 预览构建产物
 - 章节交叉引用用**当前章号**（如"衔接 15 章"），改编号后必须全局核查
 - **内容保持通用教材定位**：示例用企业级通用技术栈与命名（如 Fastify + Prisma + MySQL、`acme-api` 这类占位名），**不绑定任何个人项目**；写"对照某个生产项目"时用泛化描述，不出现具体私有仓库/域名/进程名
 - 分级定位：L2 面试级 / L3 生产级，正文示例按**企业级标准**（MySQL、可观测、安全、容量）组织，个人项目式简化方案只作为对照出现
-- 不修改 `_backup/` 目录内容

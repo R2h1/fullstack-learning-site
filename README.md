@@ -35,7 +35,6 @@ learning-site/
 │   ├── config.mjs            # 站点配置（base/侧边栏/导航/搜索）
 │   ├── theme/                # 主题：ChapterCards 章节卡片、logo
 │   └── public/logo.svg       # logo / favicon
-├── _backup/                  # 历史版本备份（后端拆分前，只读）
 ├── AGENTS.md                 # 给 AI 工具的站内说明（CLAUDE.md 为其硬链接镜像）
 └── package.json
 ```
