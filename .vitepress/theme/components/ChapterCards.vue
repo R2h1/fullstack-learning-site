@@ -1,4 +1,6 @@
 <script setup>
+import { withBase } from 'vitepress'
+
 const tracks = {
   frontend: { label: '前端', color: '#3b82f6' },
   backend: { label: '后端', color: '#10b981' },
@@ -30,7 +32,7 @@ const chapters = [
 
 <template>
   <div class="chapter-grid">
-    <a v-for="c in chapters" :key="c.no" class="chapter-card" :href="c.link">
+    <a v-for="c in chapters" :key="c.no" class="chapter-card" :href="withBase(c.link)">
       <div class="card-top">
         <span class="no">{{ c.no }}</span>
         <span class="tag" :style="{ background: tracks[c.track].color }">{{ tracks[c.track].label }}</span>
