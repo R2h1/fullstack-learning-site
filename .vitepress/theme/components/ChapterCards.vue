@@ -9,8 +9,8 @@ const tracks = {
 }
 
 const chapters = [
-  { no: '01', title: 'JavaScript 运行时深度', desc: '闭包/this · 事件循环 · Promise 手写 · GC 内存', link: '/01-JavaScript运行时深度', track: 'frontend' },
-  { no: '02', title: 'TypeScript 深度', desc: '类型系统 · 工具类型 · 类型体操 · zod 校验', link: '/02-TypeScript深度', track: 'frontend' },
+  { no: '01', title: 'JavaScript 运行时', desc: '闭包/this · 事件循环 · Promise 手写 · GC 内存', link: '/01-JavaScript运行时', track: 'frontend' },
+  { no: '02', title: 'TypeScript', desc: '类型系统 · 工具类型 · 类型体操 · zod 校验', link: '/02-TypeScript', track: 'frontend' },
   { no: '03', title: '前端框架原理', desc: 'Vue 响应式 · diff 与编译优化 · React Fiber 对照', link: '/03-前端框架原理', track: 'frontend' },
   { no: '04', title: '前端工程化', desc: '打包原理 · 测试 · CI/CD · Monorepo', link: '/04-前端工程化', track: 'frontend' },
   { no: '05', title: '浏览器·网络·性能', desc: 'URL 全链路 · 缓存 · Vitals · 安全', link: '/05-浏览器网络与性能', track: 'frontend' },
@@ -19,7 +19,7 @@ const chapters = [
   { no: '08', title: '认证与授权', desc: 'JWT/session · Cookie 安全 · OAuth2 · 权限', link: '/08-认证与授权', track: 'backend' },
   { no: '09', title: 'API 设计', desc: 'REST · 分页 · 幂等 · 限流 · 版本化', link: '/09-API设计', track: 'backend' },
   { no: '10', title: '后端工程化', desc: '测试分层 · 部署运维 · 可观测 · 优雅关闭', link: '/10-后端工程化', track: 'backend' },
-  { no: '11', title: '数据库深度', desc: 'SQL/索引 · 事务并发 · ORM 选型', link: '/11-数据库深度', track: 'backend' },
+  { no: '11', title: '数据库', desc: 'SQL/索引 · 事务并发 · ORM 选型', link: '/11-数据库', track: 'backend' },
   { no: '12', title: '缓存与分布式基础', desc: '缓存三连 · Redis · CAP · MQ', link: '/12-缓存与分布式基础', track: 'backend' },
   { no: '13', title: '系统设计实战', desc: '五步法 · 估算 · 经典题', link: '/13-系统设计实战', track: 'backend' },
   { no: '14', title: 'AI 协作工作流', desc: 'vibe coding · 上下文工程 · 审查 AI 产出', link: '/14-AI协作工作流', track: 'ai' },

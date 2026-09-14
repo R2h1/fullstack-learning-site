@@ -18,7 +18,7 @@ export default defineConfig({
     siteTitle: '全栈 × AI',
     nav: [
       { text: '首页', link: '/' },
-      { text: '前端底座', link: '/01-JavaScript运行时深度' },
+      { text: '前端底座', link: '/01-JavaScript运行时' },
       { text: '后端', link: '/06-Node.js运行时' },
       { text: 'AI 工程', link: '/15-LLM与RAG' },
       { text: '面试备战', link: '/18-面试备战与行动清单' },
@@ -28,8 +28,8 @@ export default defineConfig({
       {
         text: '前端底座',
         items: [
-          { text: '01 · JavaScript 运行时深度', link: '/01-JavaScript运行时深度' },
-          { text: '02 · TypeScript 深度', link: '/02-TypeScript深度' },
+          { text: '01 · JavaScript 运行时', link: '/01-JavaScript运行时' },
+          { text: '02 · TypeScript', link: '/02-TypeScript' },
           { text: '03 · 前端框架原理', link: '/03-前端框架原理' },
           { text: '04 · 前端工程化', link: '/04-前端工程化' },
           { text: '05 · 浏览器·网络·性能', link: '/05-浏览器网络与性能' },
@@ -43,7 +43,7 @@ export default defineConfig({
           { text: '08 · 认证与授权', link: '/08-认证与授权' },
           { text: '09 · API 设计', link: '/09-API设计' },
           { text: '10 · 后端工程化', link: '/10-后端工程化' },
-          { text: '11 · 数据库深度', link: '/11-数据库深度' },
+          { text: '11 · 数据库', link: '/11-数据库' },
           { text: '12 · 缓存与分布式基础', link: '/12-缓存与分布式基础' },
           { text: '13 · 系统设计实战', link: '/13-系统设计实战' },
         ],
