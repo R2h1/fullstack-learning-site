@@ -13,6 +13,23 @@ export default defineConfig({
   lastUpdated: true,
   head: [['link', { rel: 'icon', href: `${base}logo.svg` }]],
 
+  // 站外链接统一新标签页打开（正文里的 Markdown 外链默认是当前页跳转，会直接离开学习站）
+  markdown: {
+    config(md) {
+      const defaultLinkOpen =
+        md.renderer.rules.link_open ||
+        ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
+      md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+        const href = tokens[idx].attrGet('href')
+        if (href && /^https?:\/\//.test(href)) {
+          tokens[idx].attrSet('target', '_blank')
+          tokens[idx].attrSet('rel', 'noreferrer')
+        }
+        return defaultLinkOpen(tokens, idx, options, env, self)
+      }
+    },
+  },
+
   themeConfig: {
     logo: `${base}logo.svg`,
     siteTitle: '全栈 × AI',
@@ -22,6 +39,7 @@ export default defineConfig({
       { text: '后端', link: '/06-Node.js运行时' },
       { text: 'AI 工程', link: '/15-LLM与RAG' },
       { text: '面试备战', link: '/18-面试备战与行动清单' },
+      { text: '优质资源', link: '/resources' },
     ],
 
     sidebar: [
