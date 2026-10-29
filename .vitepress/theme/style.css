@@ -1,0 +1,15 @@
+/**
+ * 站点级样式修正（默认主题之外的少量覆盖）
+ */
+
+/* 代码块右上角的语言标签：默认 #6a6a71 在深色代码底上只有 3.36:1，读不清 */
+.vp-doc div[class*='language-'] > span.lang {
+  color: var(--vp-c-text-2);
+  opacity: 1;
+}
+
+/* github-dark 的注释色 #6A737D 在 #161618 上只有 3.75:1，注释是代码里最该读的部分。
+   Shiki 把颜色内联在 style 上（没有 class），只能按颜色值命中；换主题后此规则自动失效，无副作用。 */
+.dark .vp-doc pre.shiki span[style*='#6A737D'] {
+  color: #8b949e !important;
+}

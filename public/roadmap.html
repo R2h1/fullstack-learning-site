@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前端转全栈 + AI 学习路线图</title>
+<meta name="description" content="4 年前端转全栈 + AI 的 27–34 周学习路线：后端全栈、AI 应用工程、生产级深化、面试整合四阶段，含可勾选进度与 Java 分支。">
+<meta name="theme-color" content="#0b0f17">
+<link rel="icon" href="logo.svg">
+<style>
+  :root {
+    --bg: #0b0f17;
+    --surface: #131a26;
+    --surface-2: #1a2432;
+    --surface-3: #212d3d;
+    --border: #243042;
+    --text: #e6edf7;
+    --muted: #8b9bb4;
+    /* 原 #5f6f88 在 #131a26 / #1a2432 上只有 3.06:1，达不到 AA 4.5:1 */
+    --dim: #7e8fa7;
+    --accent: #4f9cf9;
+    --accent-2: #22d3a7;
+    --accent-3: #f0a04b;
+    --accent-4: #b57bff;
+    --accent-5: #f06a8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
+
+  /* ---------- 顶部导航 ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11, 15, 23, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* 嵌入学习站时出现的返回入口（本地 file:// 打开时自动隐藏） */
+  .back-link {
+    display: none;
+    align-items: center;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: 0.15s;
+  }
+
+  .back-link[data-hosted="1"] { display: inline-flex; }
+  .back-link:hover { color: var(--text); border-color: #3a4a63; }
+
+  .brand {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .brand span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+
+  .global-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .global-bar {
+    width: 90px;
+    height: 6px;
+    background: var(--surface-3);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .global-bar i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 99px;
+    transition: width 0.35s ease;
+  }
+
+  /* ---------- Hero ---------- */
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero {
+    padding: 56px 0 36px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    border: 1px solid rgba(34, 211, 167, 0.3);
+    background: rgba(34, 211, 167, 0.08);
+    padding: 5px 12px;
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 8px var(--accent-2);
+  }
+
+  h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(100deg, var(--accent), var(--accent-4));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 720px;
+  }
+
+  .hero p strong { color: var(--text); font-weight: 600; }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .metric {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+
+  .metric b {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .metric small {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ---------- 路线切换 ---------- */
+  .route-switch {
+    display: flex;
+    gap: 8px;
+    margin: 36px 0 8px;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: fit-content;
+  }
+
+  .route-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.18s;
+  }
+
+  .route-btn:hover { color: var(--text); }
+
+  .route-btn.active {
+    background: linear-gradient(135deg, var(--accent), #3b7fd4);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(79, 156, 249, 0.28);
+  }
+
+  /* ---------- 总览条 ---------- */
+  .overview {
+    margin: 24px 0 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .overview-title {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .ov-bar {
+    display: flex;
+    height: 34px;
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 3px;
+  }
+
+  .ov-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.3px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: 0.2s;
+  }
+
+  .ov-seg:hover { filter: brightness(1.15); }
+
+  .ov-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .ov-legend i {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ---------- 时间轴 ---------- */
+  .timeline { position: relative; }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 22px;
+    position: relative;
+  }
+
+  .phase::before {
+    content: "";
+    position: absolute;
+    left: 31px;
+    top: 64px;
+    bottom: -28px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--border), var(--border) 60%, transparent);
+    z-index: 0;
+  }
+
+  .phase:last-of-type::before { display: none; }
+
+  .marker {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 19px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 8px var(--bg);
+    letter-spacing: -0.5px;
+  }
+
+  .m1 { background: linear-gradient(135deg, #4f9cf9, #2563c9); }
+  .m2 { background: linear-gradient(135deg, #22d3a7, #0d9c7a); }
+  .m3 { background: linear-gradient(135deg, #f0a04b, #c9761f); }
+  .m4 { background: linear-gradient(135deg, #b57bff, #7c3aed); }
+  .m-java { background: linear-gradient(135deg, #f06a8a, #c23b5b); }
+
+  .phase-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+    transition: border-color 0.2s;
+  }
+
+  .phase-body:hover { border-color: #2e3e54; }
+
+  .phase-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    outline-offset: 4px;
+  }
+
+  .phase-head-left { flex: 1; min-width: 0; }
+
+  .phase-title {
+    font-size: 19px;
+    font-weight: 750;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .weeks {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--surface-3);
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  .phase-goal {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .toggle {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: 0.2s;
+    font-size: 11px;
+  }
+
+  .phase-head:hover .toggle { color: var(--text); border-color: #3a4a63; }
+
+  .phase-body.collapsed .toggle { transform: rotate(-90deg); }
+  .phase-body.collapsed .collapsible { display: none; }
+
+  /* 进度 */
+  .phase-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 5px;
+    background: var(--surface-3);
+    border-radius: 99px;
+    overflow: hidden;
+    max-width: 220px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-size: 11px;
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  /* badges */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .badge {
+    font-size: 11.5px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: rgba(79, 156, 249, 0.1);
+    color: #7ab8ff;
+    border: 1px solid rgba(79, 156, 249, 0.22);
+    font-weight: 500;
+  }
+
+  .badge.g { background: rgba(34,211,167,.1); color: #5fe3c0; border-color: rgba(34,211,167,.22); }
+  .badge.o { background: rgba(240,160,75,.1); color: #f5bc7f; border-color: rgba(240,160,75,.22); }
+  .badge.p { background: rgba(181,123,255,.1); color: #c9a3ff; border-color: rgba(181,123,255,.22); }
+  .badge.r { background: rgba(240,106,138,.1); color: #f79aae; border-color: rgba(240,106,138,.22); }
+
+  /* 两栏 */
+  .phase-cols {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .subcard {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+
+  .subcard-title {
+    font-size: 11.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--dim);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .subcard-title::before {
+    content: "";
+    width: 3px;
+    height: 13px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+
+  .subcard.purple .subcard-title::before { background: var(--accent-4); }
+  .subcard.green .subcard-title::before { background: var(--accent-2); }
+  .subcard.orange .subcard-title::before { background: var(--accent-3); }
+
+  /* 任务 */
+  .task {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 6px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .task:hover { background: rgba(255, 255, 255, 0.03); }
+
+  .task input {
+    margin-top: 4px;
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent-2);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .task-text { color: #cdd8e8; transition: 0.15s; }
+
+  .task.done .task-text {
+    color: var(--dim);
+    text-decoration: line-through;
+    text-decoration-color: rgba(95, 111, 136, 0.6);
+  }
+
+  .task-text b { color: var(--text); font-weight: 600; }
+  .task.done .task-text b { color: var(--dim); }
+
+  /* 列表 */
+  .plain-list { list-style: none; }
+
+  .plain-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    color: #b8c5d8;
+    margin-bottom: 8px;
+    line-height: 1.55;
+  }
+
+  .plain-list li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-3);
+  }
+
+  .plain-list li b { color: var(--text); font-weight: 600; }
+
+  .output {
+    margin-top: 18px;
+    background: linear-gradient(135deg, rgba(34,211,167,.09), rgba(34,211,167,.03));
+    border: 1px solid rgba(34,211,167,.25);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #c9f2e5;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .output::before {
+    content: "🎯";
+    font-size: 16px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  .output b { color: #7dffdb; font-weight: 700; }
+
+  /* Java 分支标记：可见性完全由 CSS 根据 data-route 决定 */
+  .only-java,
+  .only-java-chip { display: none; }
+
+  body[data-route="java"] section.only-java { display: grid; }
+  body[data-route="java"] .branch-note.only-java { display: block; }
+  body[data-route="java"] .only-java-chip { display: inline-block; }
+
+  .branch-note {
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: #f5bc7f;
+    background: rgba(240,160,75,.07);
+    border: 1px solid rgba(240,160,75,.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    line-height: 1.6;
+  }
+
+  /* 技术栈汇总 */
+  .stack-section { margin-top: 56px; }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .section-sub {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px;
+  }
+
+  .stack-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+
+  .stack-card h3 {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .stack-items { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .chip {
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: #c3d1e4;
+    font-weight: 500;
+  }
+
+  .chip.core {
+    background: rgba(79,156,249,.13);
+    border-color: rgba(79,156,249,.3);
+    color: #8cc0ff;
+    font-weight: 600;
+  }
+
+  .chip.opt {
+    background: rgba(240,160,75,.1);
+    border-color: rgba(240,160,75,.25);
+    color: #f0b877;
+  }
+
+  /* 原则 */
+  .principles {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .principle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .principle:nth-child(2) { border-left-color: var(--accent-2); }
+  .principle:nth-child(3) { border-left-color: var(--accent-4); }
+  .principle:nth-child(4) { border-left-color: var(--accent-3); }
+
+  .principle h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+
+  .principle p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* 页脚 */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .reset-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.18s;
+  }
+
+  .reset-btn:hover { color: var(--text); border-color: #3a4a63; }
+
+  /* 响应式 */
+  @media (max-width: 860px) {
+    .phase-cols { grid-template-columns: 1fr; }
+    .hero { padding: 36px 0 24px; }
+    .overview { padding: 16px; }
+    .phase-body { padding: 18px; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .topbar-inner { padding: 10px 16px; gap: 12px; }
+    .nav-links { display: none; }
+    .phase { grid-template-columns: 44px 1fr; gap: 14px; }
+    .marker { width: 44px; height: 44px; border-radius: 13px; font-size: 15px; }
+    .phase::before { left: 21px; top: 48px; }
+    .ov-seg { font-size: 9px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  @media print {
+    body { background: #fff; color: #111; }
+    .topbar, .route-switch, .reset-btn { display: none; }
+    .phase-body, .subcard, .metric, .stack-card, .principle { border-color: #ddd; background: #fafafa; }
+    .phase-body.collapsed .collapsible { display: block !important; }
+  }
+</style>
+</head>
+<body data-route="ts">
+<script>
+  /* 尽早应用已保存的路线，避免刷新时先闪一下另一条路线 */
+  try {
+    var savedRoute = localStorage.getItem('fullstack-ai-roadmap:route');
+    if (savedRoute === 'java' || savedRoute === 'ts') document.body.dataset.route = savedRoute;
+  } catch (e) {}
+</script>
+
+<!-- ============ 顶部导航 ============ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="./">← 学习站</a>
+    <div class="brand">前端 → 全栈 <span>+</span> AI</div>
+    <nav class="nav-links">
+      <a href="#phase1">01 后端全栈</a>
+      <a href="#phase2">02 AI 应用</a>
+      <a href="#phase3">03 生产深化</a>
+      <a href="#phase4">04 面试整合</a>
+      <a href="#stack">技术栈</a>
+    </nav>
+    <div class="global-progress">
+      <span>总进度</span>
+      <div class="global-bar" role="progressbar" aria-label="总进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="globalFill"></i></div>
+      <span id="globalText">0%</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============ Hero ============ -->
+  <header class="hero">
+    <div class="eyebrow">4 年前端 · 转型路线</div>
+    <h1>从「写页面」到<br><em>全栈 + AI 工程</em></h1>
+    <p>
+      核心原则：<strong>后端先行</strong>，AI 建立在可部署的后端之上，每个阶段以一个<strong>可面试的项目</strong>收口。
+      前端补强不单独开线，而是<strong>嵌入每个阶段</strong>作为质量门槛。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><b>27–34 周</b><small>总周期（约 6–8 个月）</small></div>
+      <div class="metric"><b>12–15 h</b><small>每周投入</small></div>
+      <div class="metric"><b>2 个</b><small>面试级项目</small></div>
+      <div class="metric"><b>1 套</b><small>可迁移的架构叙事</small></div>
+    </div>
+  </header>
+
+  <!-- ============ 路线切换 ============ -->
+  <div class="route-switch">
+    <button class="route-btn active" data-route="ts" aria-pressed="true">一线 / AI 全栈路线</button>
+    <button class="route-btn" data-route="java" aria-pressed="false">二线 / Java 存量路线</button>
+  </div>
+
+  <!-- ============ 总览条 ============ -->
+  <div class="overview">
+    <div class="overview-title">时间分配总览</div>
+    <div class="ov-bar">
+      <div class="ov-seg" style="flex: 11; background: linear-gradient(135deg,#4f9cf9,#2563c9);" title="后端全栈 10–12 周">后端全栈</div>
+      <div class="ov-seg" style="flex: 9; background: linear-gradient(135deg,#22d3a7,#0d9c7a);" title="AI 应用工程 8–10 周">AI 应用</div>
+      <div class="ov-seg" style="flex: 7; background: linear-gradient(135deg,#f0a04b,#c9761f);" title="生产级深化 6–8 周">生产深化</div>
+      <div class="ov-seg" style="flex: 3.5; background: linear-gradient(135deg,#b57bff,#7c3aed);" title="面试整合 3–4 周">面试</div>
+    </div>
+    <div class="ov-legend">
+      <span><i style="background:#4f9cf9"></i>阶段一 · 后端全栈</span>
+      <span><i style="background:#22d3a7"></i>阶段二 · AI 应用工程</span>
+      <span><i style="background:#f0a04b"></i>阶段三 · 生产级深化</span>
+      <span><i style="background:#b57bff"></i>阶段四 · 面试整合</span>
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <div class="timeline">
+
+    <!-- ===== 阶段一 ===== -->
+    <section class="phase" id="phase1">
+      <div class="marker m1">01</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase1-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              后端全栈
+              <span class="weeks">10–12 周</span>
+            </div>
+            <div class="phase-goal">目标：具备独立设计、实现并部署一个后端服务的完整能力</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="后端全栈阶段进度" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/9</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase1-body">
+          <div class="badges">
+            <span class="badge">Node.js</span>
+            <span class="badge">NestJS</span>
+            <span class="badge">PostgreSQL</span>
+            <span class="badge">Prisma</span>
+            <span class="badge">Redis</span>
+            <span class="badge">Docker / CI/CD</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务</div>
+              <label class="task"><input type="checkbox" id="p1t1"><span class="task-text"><b>Node.js 核心</b>：事件循环、Stream/Buffer、异步模型、进程与集群</span></label>
+              <label class="task"><input type="checkbox" id="p1t2"><span class="task-text"><b>NestJS</b>：模块/控制器/服务、依赖注入、DTO 校验、守卫/拦截器/管道</span></label>
+              <label class="task"><input type="checkbox" id="p1t3"><span class="task-text"><b>PostgreSQL 建模</b>：表设计、范式取舍、索引原理（B-tree / 复合索引）、联表与执行计划</span></label>
+              <label class="task"><input type="checkbox" id="p1t4"><span class="task-text"><b>事务与并发</b>：ACID、隔离级别、锁、乐观/悲观并发控制</span></label>
+              <label class="task"><input type="checkbox" id="p1t5"><span class="task-text"><b>Prisma</b>：Schema 设计、Migration 策略、事务 API</span></label>
+              <label class="task"><input type="checkbox" id="p1t6"><span class="task-text"><b>认证与安全</b>：JWT 刷新机制、RBAC、OAuth2、XSS/CSRF/SQL 注入防护</span></label>
+              <label class="task"><input type="checkbox" id="p1t7"><span class="task-text"><b>Redis</b>：缓存穿透/击穿/雪崩、分布式锁、限流</span></label>
+              <label class="task"><input type="checkbox" id="p1t8"><span class="task-text"><b>消息队列</b>：异步任务、重试与死信队列</span></label>
+              <label class="task"><input type="checkbox" id="p1t9"><span class="task-text"><b>Docker + CI/CD</b>：多阶段构建、流水线、日志与健康检查</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">面试锚点（要能讲出来）</div>
+                <ul class="plain-list">
+                  <li>为什么选 NestJS 而非 Express？<b>DI 与模块化对团队协作的长期收益</b></li>
+                  <li>你的表怎么设计、<b>索引为什么加在这里</b></li>
+                  <li>事务边界怎么划、并发下如何保证一致性</li>
+                  <li>JWT 刷新怎么做、token 泄漏怎么兜底</li>
+                  <li>代码从提交到生产<b>经过哪些环节</b></li>
+                </ul>
+              </div>
+
+              <div class="subcard purple" style="margin-top:14px;">
+                <div class="subcard-title">前端补强（并行）</div>
+                <ul class="plain-list">
+                  <li><b>JS 底层</b>：闭包与内存泄漏、Promise/A+、并发调度器</li>
+                  <li><b>浏览器</b>：CRP 渲染链路、重排/重绘、V8 分代回收</li>
+                  <li><b>性能</b>：Performance 面板定位瓶颈、堆快照排查</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="output">
+            <div><b>阶段产出</b>：一个 SaaS 后端 API 项目 —— 认证 + 数据库 CRUD + 缓存 + Docker 部署。<br>这是你第一个可面试项目，重点准备「架构取舍 + 一个你排查过的生产问题」。</div>
+          </div>
+
+          <div class="branch-note only-java">
+            ⚠️ 选择 Java 路线时：本阶段仍然先学 NestJS（建立后端架构思维），完成后再追加 2–3 个月 Java 分支（见下方红色卡片）。数据库可改用 MySQL。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Java 分支（仅 Java 路线显示）===== -->
+    <section class="phase only-java" id="phaseJava">
+      <div class="marker m-java">J</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phaseJava-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              Java / Spring Boot 分支
+              <span class="weeks">+2–3 个月</span>
+            </div>
+            <div class="phase-goal">目标：能接手和维护 Java 存量项目，而不是「精通 Spring 生态」</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="Java 分支进度" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/4</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phaseJava-body">
+          <div class="badges">
+            <span class="badge r">Java 基础</span>
+            <span class="badge r">JVM / 并发</span>
+            <span class="badge r">Spring Boot</span>
+            <span class="badge r">MySQL</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务</div>
+              <label class="task"><input type="checkbox" id="pj1"><span class="task-text"><b>Java 基础语法</b>（2–3 周）：类型系统、集合、泛型、异常、IO</span></label>
+              <label class="task"><input type="checkbox" id="pj2"><span class="task-text"><b>并发与 JVM 概念</b>（1 周）：线程模型、线程池、GC 基础</span></label>
+              <label class="task"><input type="checkbox" id="pj3"><span class="task-text"><b>Spring Boot 业务开发</b>（3–4 周）：Controller/Service/Repository、JPA、事务、拦截器</span></label>
+              <label class="task"><input type="checkbox" id="pj4"><span class="task-text"><b>MySQL 差异</b>：与 PostgreSQL 的语法/生态差异、索引与执行计划</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">关键认知</div>
+                <ul class="plain-list">
+                  <li>NestJS 的 DI、模块化、装饰器<b>与 Spring 高度相似</b>，架构思维可无损迁移</li>
+                  <li>真正的门槛是<b>Java 语言本身与 JVM 生态</b>，不是后端概念</li>
+                  <li>合理目标是「<b>能写业务 + 能维护</b>」，精通 Spring 生态不是当前任务</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 阶段二 ===== -->
+    <section class="phase" id="phase2">
+      <div class="marker m2">02</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase2-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              AI 应用工程
+              <span class="weeks">8–10 周</span>
+            </div>
+            <div class="phase-goal">目标：以「AI 应用工程师」定位，构建可评估、可监控、可部署的 RAG 系统</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="AI 应用工程阶段进度" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/10</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase2-body">
+          <div class="badges">
+            <span class="badge g">Python / FastAPI</span>
+            <span class="badge g">LangChain</span>
+            <span class="badge g">LangGraph</span>
+            <span class="badge g">pgvector</span>
+            <span class="badge g">Langfuse</span>
+            <span class="badge g">Next.js</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务</div>
+              <label class="task"><input type="checkbox" id="p2t1"><span class="task-text"><b>Python + FastAPI</b>：边做边补，聚焦异步与类型（Pydantic）</span></label>
+              <label class="task"><input type="checkbox" id="p2t2"><span class="task-text"><b>LLM API</b>：调用、重试、流式、结构化输出、函数调用</span></label>
+              <label class="task"><input type="checkbox" id="p2t3"><span class="task-text"><b>Prompt 工程</b>：指令设计、少样本、CoT、输出约束</span></label>
+              <label class="task"><input type="checkbox" id="p2t4"><span class="task-text"><b>RAG 摄入</b>：文档解析、Chunk 策略、元数据、增量更新</span></label>
+              <label class="task"><input type="checkbox" id="p2t5"><span class="task-text"><b>检索</b>：Embedding 选型、向量检索、BM25、混合检索、Rerank</span></label>
+              <label class="task"><input type="checkbox" id="p2t6"><span class="task-text"><b>生成质量</b>：引用溯源、幻觉治理、上下文压缩</span></label>
+              <label class="task"><input type="checkbox" id="p2t7"><span class="task-text"><b>评估体系</b>：检索指标（Recall/Precision）、生成指标（Faithfulness）、离线评估集</span></label>
+              <label class="task"><input type="checkbox" id="p2t8"><span class="task-text"><b>Agentic RAG</b>：LangGraph 多步检索、工具调用、状态机</span></label>
+              <label class="task"><input type="checkbox" id="p2t9"><span class="task-text"><b>监控与成本</b>：Langfuse 追踪、语义缓存、模型分级、Token 预算</span></label>
+              <label class="task"><input type="checkbox" id="p2t10"><span class="task-text"><b>pgvector 集成</b>：在 PostgreSQL 中统一业务数据与向量检索</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">面试锚点（要能讲出来）</div>
+                <ul class="plain-list">
+                  <li>完整讲一遍 RAG 全链路，<b>每一步的取舍</b></li>
+                  <li>检索质量差怎么优化（检索 → 生成 → 评估三层展开）</li>
+                  <li>幻觉怎么兜底、<b>怎么衡量</b></li>
+                  <li>延迟和成本怎么控制（缓存 / 模型分级 / 流式）</li>
+                  <li>一个真实的 <b>badcase 排障过程</b></li>
+                </ul>
+              </div>
+
+              <div class="subcard purple" style="margin-top:14px;">
+                <div class="subcard-title">前端补强：AI 原生前端</div>
+                <ul class="plain-list">
+                  <li>手写 <b>SSE 流式解析</b> + AbortController 中断</li>
+                  <li><b>残缺 JSON</b> 增量解析与容错渲染</li>
+                  <li>Agent 多工具调用的<b>异步状态机</b></li>
+                  <li>生成内容<b>沙盒隔离</b>与降级策略</li>
+                  <li>Sentry 打通前端 → 后端 → DB <b>分布式追踪</b></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="output">
+            <div><b>阶段产出</b>：一个生产级 RAG 系统 + AI 前端（流式对话、引用展示）。<br>前端 4 年经验的优势在这里直接兑现：流式 UI、对话状态管理、交互体验设计。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 阶段三 ===== -->
+    <section class="phase" id="phase3">
+      <div class="marker m3">03</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase3-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              生产级深化
+              <span class="weeks">6–8 周</span>
+            </div>
+            <div class="phase-goal">目标：把「能跑」变成「敢上线」，建立可白板展开的架构叙事</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="生产级深化阶段进度" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/8</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase3-body">
+          <div class="badges">
+            <span class="badge o">AI 工程化</span>
+            <span class="badge o">vLLM / Ollama</span>
+            <span class="badge o">系统设计</span>
+            <span class="badge o">可观测性</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务</div>
+              <label class="task"><input type="checkbox" id="p3t1"><span class="task-text"><b>AI 工程化</b>：离线评估 + 在线监控、A/B、回滚策略</span></label>
+              <label class="task"><input type="checkbox" id="p3t2"><span class="task-text"><b>推理部署</b>：vLLM / Ollama 取舍、容器化推理服务、GPU 资源</span></label>
+              <label class="task"><input type="checkbox" id="p3t3"><span class="task-text"><b>安全与护栏</b>：Prompt 注入防护、输出过滤、PII 脱敏</span></label>
+              <label class="task"><input type="checkbox" id="p3t4"><span class="task-text"><b>系统设计基础</b>：CAP/PACELC、一致性哈希、缓存分层、限流降级</span></label>
+              <label class="task"><input type="checkbox" id="p3t5"><span class="task-text"><b>消息队列在 AI 场景</b>：异步批处理、任务队列、背压</span></label>
+              <label class="task"><input type="checkbox" id="p3t6"><span class="task-text"><b>架构复盘</b>：把两个项目画成架构图，标出瓶颈与故障模式</span></label>
+              <label class="task"><input type="checkbox" id="p3t7"><span class="task-text"><b>前端工程化治理</b>：Monorepo、增量构建、微前端隔离、错误边界</span></label>
+              <label class="task"><input type="checkbox" id="p3t8"><span class="task-text"><b>前端可观测性</b>：错误采集、SourceMap 还原、Web Vitals 告警</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">面试锚点（要能讲出来）</div>
+                <ul class="plain-list">
+                  <li>流量涨 <b>10 倍</b>怎么办？</li>
+                  <li>模型服务挂了<b>怎么降级</b>？</li>
+                  <li>白板画系统设计：先高层数据流，再按追问深入</li>
+                  <li>前端如何保证<b>生产质量</b>（错误兜底 + 监控 + 告警）</li>
+                </ul>
+              </div>
+
+              <div class="subcard green" style="margin-top:14px;">
+                <div class="subcard-title">推荐对标资源</div>
+                <ul class="plain-list">
+                  <li><b>ai-interview-guide</b>：28 专题 / 720 题，含生产部署与安全评测，当反向检查表用</li>
+                  <li><b>Machine Learning in Production</b>（CMU 课程配套）：工程治理框架</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="output">
+            <div><b>阶段产出</b>：两份架构图 + 一组面试卡片 + 一个完整的「从故障到修复」故事。<br>不是新项目，而是把已有项目升级为「可讲清楚的架构」。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 阶段四 ===== -->
+    <section class="phase" id="phase4">
+      <div class="marker m4">04</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase4-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              面试整合
+              <span class="weeks">3–4 周</span>
+            </div>
+            <div class="phase-goal">目标：用两个项目作为锚点，组织出一套能回答任何追问的叙事</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="面试整合阶段进度" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/5</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase4-body">
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务</div>
+              <label class="task"><input type="checkbox" id="p4t1"><span class="task-text"><b>项目叙事打磨</b>：约束 → 取舍 → 结果，而不是功能列表</span></label>
+              <label class="task"><input type="checkbox" id="p4t2"><span class="task-text"><b>反向刷题</b>：AI 面试 28 专题，每专题不看资料讲 3 分钟</span></label>
+              <label class="task"><input type="checkbox" id="p4t3"><span class="task-text"><b>系统设计模拟</b>：白板练习 3–5 个经典题</span></label>
+              <label class="task"><input type="checkbox" id="p4t4"><span class="task-text"><b>简历重写</b>：项目锚点 + 量化结果 + 技术取舍</span></label>
+              <label class="task"><input type="checkbox" id="p4t5"><span class="task-text"><b>行为面试</b>：转型动机、学习能力、跨端协作故事</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">「介绍最复杂项目」框架</div>
+                <ul class="plain-list">
+                  <li><b>约束</b>：当时的业务/团队/资源限制是什么</li>
+                  <li><b>取舍</b>：在 A 和 B 之间为什么选 A</li>
+                  <li><b>结果</b>：量化收益，或一个被修复的真实问题</li>
+                  <li><b>反思</b>：如果重来会怎么改</li>
+                </ul>
+              </div>
+
+              <div class="subcard green" style="margin-top:14px;">
+                <div class="subcard-title">最终交付物</div>
+                <ul class="plain-list">
+                  <li>面试问答卡片（每张对应一个高频追问）</li>
+                  <li>2 张架构图 + 1 个故障复盘故事</li>
+                  <li>1 份用项目锚点重写的简历</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /timeline -->
+
+  <!-- ============ 技术栈汇总 ============ -->
+  <section class="stack-section" id="stack">
+    <h2 class="section-title">技术栈清单</h2>
+    <p class="section-sub">蓝色为核心必学，橙色为按路线可选项</p>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <h3>后端</h3>
+        <div class="stack-items">
+          <span class="chip core">NestJS</span>
+          <span class="chip core">Prisma</span>
+          <span class="chip core">REST</span>
+          <span class="chip core">Redis</span>
+          <span class="chip core">Docker</span>
+          <span class="chip opt only-java-chip">Spring Boot</span>
+          <span class="chip opt only-java-chip">Java</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <h3>数据库</h3>
+        <div class="stack-items">
+          <span class="chip core">PostgreSQL</span>
+          <span class="chip core">SQL / 索引 / 事务</span>
+          <span class="chip core">pgvector</span>
+          <span class="chip opt">MySQL（Java 路线）</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <h3>AI 应用</h3>
+        <div class="stack-items">
+          <span class="chip core">Python</span>
+          <span class="chip core">FastAPI</span>
+          <span class="chip core">LangChain</span>
+          <span class="chip core">LangGraph</span>
+          <span class="chip core">RAG</span>
+          <span class="chip core">Langfuse</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <h3>前端（补强后）</h3>
+        <div class="stack-items">
+          <span class="chip core">Next.js</span>
+          <span class="chip core">SSE 流式渲染</span>
+          <span class="chip core">异步状态机</span>
+          <span class="chip core">Sentry</span>
+          <span class="chip core">Monorepo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 核心原则 ============ -->
+  <section class="principles">
+    <div class="principle">
+      <h3>后端先行，不是拖延</h3>
+      <p>AI 应用的质量高度依赖后端工程能力。跳过后端直接做 AI，会在「服务怎么部署、并发怎么扛」上暴露短板。</p>
+    </div>
+    <div class="principle">
+      <h3>每个阶段必须有一个项目</h3>
+      <p>读书笔记不会让你通过面试，可运行、可展示、可复盘的项目才会。两个项目就是两个锚点。</p>
+    </div>
+    <div class="principle">
+      <h3>前端补强不单独开线</h3>
+      <p>嵌入每个阶段作为质量门槛：阶段一补底层与性能，阶段二补 AI 原生前端，阶段三补可观测性。</p>
+    </div>
+    <div class="principle">
+      <h3>数据库优先级最高</h3>
+      <p>这是前端转后端思维转变最困难、面试权重却最高的一环。SQL 与 PostgreSQL 必须集中攻克。</p>
+    </div>
+  </section>
+
+  <!-- ============ 页脚 ============ -->
+</main>
+
+<footer class="footer wrap">
+  <div>前端 4 年 → 全栈 + AI · 交互式学习路线图</div>
+  <button class="reset-btn" onclick="resetAll()">重置全部进度</button>
+</footer>
+
+<script>
+  /* ---------- 折叠 ---------- */
+  function togglePhase(head) {
+    const body = head.closest('.phase-body');
+    const collapsed = body.classList.toggle('collapsed');
+    head.setAttribute('aria-expanded', String(!collapsed));
+  }
+
+  function phaseKeydown(e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      togglePhase(e.currentTarget);
+    }
+  }
+
+  /* ---------- 本地存储（file:// 或隐私模式下可能不可用，做兜底） ---------- */
+  const STORAGE_PREFIX = 'fullstack-ai-roadmap:';
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    keys() { try { return Object.keys(localStorage); } catch (e) { return []; } },
+    remove(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  /* ---------- 进度计算 ---------- */
+  function isRendered(el) {
+    return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+  }
+
+  function updateProgress() {
+    let totalAll = 0, doneAll = 0;
+
+    document.querySelectorAll('.phase-body').forEach(body => {
+      /* 隐藏路线（如未选中 Java 路线）计入分母会让总进度永远到不了 100% */
+      if (!isRendered(body)) return;
+
+      const tasks = body.querySelectorAll('.task input[type=checkbox]');
+      if (!tasks.length) return;
+
+      let done = 0;
+      tasks.forEach(t => { if (t.checked) done++; });
+
+      totalAll += tasks.length;
+      doneAll += done;
+
+      const pct = Math.round((done / tasks.length) * 100);
+      const fill = body.querySelector('.progress-fill');
+      const text = body.querySelector('.progress-text');
+      const track = body.querySelector('.progress-track');
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = done + '/' + tasks.length;
+      if (track) {
+        track.setAttribute('aria-valuemax', String(tasks.length));
+        track.setAttribute('aria-valuenow', String(done));
+      }
+    });
+
+    const gPct = totalAll ? Math.round((doneAll / totalAll) * 100) : 0;
+    const gFill = document.getElementById('globalFill');
+    const gText = document.getElementById('globalText');
+    const gBar = gFill && gFill.parentElement;
+    if (gFill) gFill.style.width = gPct + '%';
+    if (gText) gText.textContent = gPct + '%';
+    if (gBar) gBar.setAttribute('aria-valuenow', String(gPct));
+  }
+
+  /* ---------- 任务勾选 + localStorage ---------- */
+  document.querySelectorAll('.task input[type=checkbox]').forEach(cb => {
+    const key = STORAGE_PREFIX + cb.id;
+
+    // 恢复状态
+    if (store.get(key) === '1') {
+      cb.checked = true;
+      cb.closest('.task').classList.add('done');
+    }
+
+    cb.addEventListener('change', () => {
+      store.set(key, cb.checked ? '1' : '0');
+      cb.closest('.task').classList.toggle('done', cb.checked);
+      updateProgress();
+    });
+  });
+
+  /* ---------- 路线切换 ---------- */
+  const routeBtns = document.querySelectorAll('.route-btn');
+
+  function applyRoute(route) {
+    document.body.dataset.route = route;
+    routeBtns.forEach(b => {
+      const active = b.dataset.route === route;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+
+    store.set(STORAGE_PREFIX + 'route', route);
+    updateProgress();
+  }
+
+  routeBtns.forEach(btn => {
+    btn.addEventListener('click', () => applyRoute(btn.dataset.route));
+  });
+
+  // 初始路线
+  applyRoute(store.get(STORAGE_PREFIX + 'route') === 'java' ? 'java' : 'ts');
+
+  /* ---------- 重置 ---------- */
+  function resetAll() {
+    if (!confirm('确定要清空所有勾选进度吗？')) return;
+    store.keys()
+      .filter(k => k.startsWith(STORAGE_PREFIX) && k !== STORAGE_PREFIX + 'route')
+      .forEach(k => store.remove(k));
+
+    document.querySelectorAll('.task input[type=checkbox]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.task').classList.remove('done');
+    });
+
+    updateProgress();
+  }
+
+  /* ---------- 初始化 ---------- */
+  updateProgress();
+
+  /* 仅在通过站点访问时显示「返回学习站」，本地双击打开时保持隐藏 */
+  if (/^https?:$/.test(location.protocol)) {
+    const back = document.querySelector('.back-link');
+    if (back) back.dataset.hosted = '1';
+  }
+</script>
+
+</body>
+</html>

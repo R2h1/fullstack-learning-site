@@ -28,16 +28,27 @@ pnpm run preview    # 预览构建产物
 
 ```
 learning-site/
-├── index.md                  # 首页（hero + 课程卡片 + 能力图谱）
+├── index.md                  # 首页（hero + 课程卡片 + 路线图入口 + 能力图谱）
 ├── 01-*.md ~ 18-*.md         # 课程章节（每章一个学习单元）
+├── public/                   # 静态文件，原样复制到产物根目录
+│   ├── roadmap.html          # 交互式学习路线图（独立单文件页）
+│   ├── logo.svg              # logo / favicon
+│   └── robots.txt
 ├── .github/workflows/        # GitHub Actions：push main 自动构建并发布 gh-pages
 ├── .vitepress/
-│   ├── config.mjs            # 站点配置（base/侧边栏/导航/搜索）
-│   ├── theme/                # 主题：ChapterCards 章节卡片、logo
-│   └── public/logo.svg       # logo / favicon
+│   ├── config.mjs            # 站点配置（base/侧边栏/导航/搜索/sitemap/OG）
+│   └── theme/                # 主题：Layout、样式覆盖、ChapterCards、RoadmapEntry
 ├── AGENTS.md                 # 给 AI 工具的站内说明（CLAUDE.md 为其硬链接镜像）
 └── package.json
 ```
+
+> `public/` 必须在项目根目录。VitePress 的 publicDir 取 `srcDir/public`，放在 `.vitepress/public` 不会被打包（logo 与 favicon 会 404）。
+
+## 学习路线图
+
+`public/roadmap.html` 是按「后端全栈 → AI 应用工程 → 生产级深化 → 面试整合」四阶段排的 27–34 周路线，可勾选任务、进度存 localStorage，并支持切换 Java 存量路线。
+
+与 18 章的分工：**章节是知识点，路线图是时间与项目安排**。顶部导航与首页都有入口；由于它是静态页而非 VitePress 路由，链接统一 `target="_blank"` 打开，避免被客户端路由拦截。
 
 ## 如何新增/修改章节
 

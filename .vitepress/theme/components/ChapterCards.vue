@@ -1,11 +1,12 @@
 <script setup>
 import { withBase } from 'vitepress'
 
+// 底色取 600/700 档：白字在 500 档上只有 2.5–3.7 的对比度，达不到 WCAG AA
 const tracks = {
-  frontend: { label: '前端', color: '#3b82f6' },
-  backend: { label: '后端', color: '#10b981' },
-  ai: { label: 'AI', color: '#8b5cf6' },
-  interview: { label: '面试', color: '#f59e0b' },
+  frontend: { label: '前端', color: '#2563eb' },
+  backend: { label: '后端', color: '#047857' },
+  ai: { label: 'AI', color: '#7c3aed' },
+  interview: { label: '面试', color: '#b45309' },
 }
 
 const chapters = [

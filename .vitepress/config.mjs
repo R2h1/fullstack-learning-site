@@ -3,15 +3,57 @@ import { defineConfig } from 'vitepress'
 // GitHub Pages 项目站点部署在子路径（https://<user>.github.io/fullstack-learning-site/）
 // 本地 dev 访问 http://localhost:5174/fullstack-learning-site/（与线上路径一致，避免"本地正常线上 404"）
 const base = '/fullstack-learning-site/'
+const siteOrigin = 'https://R2h1.github.io'
+const siteTitle = '全栈 × AI 学习路径'
+const siteDesc = '面试级 · 生产级 · 企业级的全栈 + AI 学习课程（个人笔记，内容优先）'
 
 export default defineConfig({
   base,
   lang: 'zh-CN',
-  title: '全栈 × AI 学习路径',
-  description: '面试级 · 生产级 · 企业级的全栈 + AI 学习课程（个人笔记，内容优先）',
+  title: siteTitle,
+  description: siteDesc,
   cleanUrls: true,
   lastUpdated: true,
-  head: [['link', { rel: 'icon', href: `${base}logo.svg` }]],
+
+  // AGENTS / CLAUDE / README 是仓库内部说明，不该被当成课程页发布
+  // （不排除会被构建成页面，同时污染本地搜索索引）
+  srcExclude: ['AGENTS.md', 'CLAUDE.md', 'README.md'],
+  head: [
+    ['link', { rel: 'icon', href: `${base}logo.svg` }],
+    ['meta', { name: 'theme-color', content: '#3451b2' }],
+    ['meta', { property: 'og:site_name', content: siteTitle }],
+  ],
+
+  // 每页补 canonical / OG，社交分享与搜索引擎才有正确的标题与地址
+  transformPageData(pageData) {
+    const rel = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, '$1')
+      .replace(/\.md$/, '')
+    const url = `${siteOrigin}${base}${rel}`
+    const title = pageData.title ? `${pageData.title} | ${siteTitle}` : siteTitle
+    const description = pageData.description || siteDesc
+
+    pageData.frontmatter.head = pageData.frontmatter.head || []
+    pageData.frontmatter.head.push(
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:type', content: rel ? 'article' : 'website' }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { name: 'twitter:card', content: 'summary' }],
+    )
+  },
+
+  // sitemap 插件用 URL 解析拼接，页面路径以 / 开头会把 base 吃掉，所以在这里补回子路径
+  sitemap: {
+    hostname: siteOrigin,
+    transformItems: (items) =>
+      items.map((item) => ({
+        ...item,
+        url: `${base}${item.url.replace(/^\//, '')}`,
+      })),
+  },
+
 
   // 站外链接统一新标签页打开（正文里的 Markdown 外链默认是当前页跳转，会直接离开学习站）
   markdown: {
@@ -31,10 +73,13 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: `${base}logo.svg`,
+    // 注意：logo 由 VitePress 自动加 base，这里写 public 内的路径即可（手动加 base 会变成双前缀）
+    logo: '/logo.svg',
     siteTitle: '全栈 × AI',
     nav: [
       { text: '首页', link: '/' },
+      // 路线图是独立的静态页（public/roadmap.html），走 _blank 绕开 SPA 路由
+      { text: '🗺️ 路线图', link: '/roadmap.html', target: '_blank', rel: 'noreferrer' },
       { text: '前端底座', link: '/01-JavaScript运行时' },
       { text: '后端', link: '/06-Node.js运行时' },
       { text: 'AI 工程', link: '/15-LLM与RAG' },
@@ -87,7 +132,7 @@ export default defineConfig({
       provider: 'local',
       options: {
         translations: {
-          button: { buttonText: '搜索', buttonAriaLabel: '搜索' },
+          button: { buttonText: '搜索', buttonAriaLabel: '搜索K' },
           modal: {
             noResultsText: '没有找到相关结果',
             resetButtonTitle: '清除查询条件',
@@ -98,6 +143,10 @@ export default defineConfig({
     },
 
     docFooter: { prev: '上一章', next: '下一章' },
+    editLink: {
+      pattern: 'https://github.com/R2h1/fullstack-learning-site/edit/main/:path',
+      text: '在 GitHub 上编辑此页',
+    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/R2h1/fullstack-learning-site' }],
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',

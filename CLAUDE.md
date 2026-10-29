@@ -10,9 +10,14 @@
 
 - **内容即课程**：根目录 `01-*.md` ~ `18-*.md`，每章一个学习单元（纯 Markdown，不绑框架）
 - **站点骨架**：
-  - `.vitepress/config.mjs`：站点配置（侧边栏、顶部导航、本地搜索）
-  - `.vitepress/theme/`：`index.js`（主题入口）、`components/ChapterCards.vue`（首页章节卡片）、`public/logo.svg`（logo/favicon）
-  - `index.md`：首页（hero + 能力卡片 + 课程目录 + 能力图谱）
+  - `.vitepress/config.mjs`：站点配置（侧边栏、顶部导航、本地搜索、sitemap、每页 canonical/OG）
+  - `.vitepress/theme/`：`index.js`（主题入口）、`Layout.vue`（包一层默认主题，补 main 地标）、`style.css`（少量样式覆盖）、`components/ChapterCards.vue`（首页章节卡片）、`components/RoadmapEntry.vue`（首页路线图入口）
+  - `public/`：静态文件，构建时原样复制到产物根目录（`logo.svg`、`robots.txt`、`roadmap.html`）
+  - `index.md`：首页（hero + 能力卡片 + 课程目录 + 路线图入口 + 能力图谱）
+
+> `public/` 必须在**项目根目录**（与 `.md` 同级）。VitePress 的 publicDir 是 `srcDir/public`，放到 `.vitepress/public` 不会被打包，线上会 404。
+
+- **路线图**：`public/roadmap.html` 是独立的单文件交互页（自己的深色样式 + localStorage 进度），不参与 VitePress 构建。入口在顶部导航与首页；因为它是静态页而不是 VitePress 路由，链接必须带 `target="_blank"`，否则会被客户端路由拦截成 404。它属于**进度工具**，和 18 章的知识点分工不同。
 
 ## 命令
 
