@@ -218,3 +218,13 @@ def test_no_memory_leak_over_long_run():
 - [ ] 压测报告包含吞吐曲线 + TTFT/TPOT 数据
 - [ ] README 清晰写出取舍记录（为什么不支持量化/多卡？为什么选 single model？）
 - [ ] 至少一人 review（GitHub PR 或社区讨论）
+
+---
+
+## 🔗 相关脚手架
+
+### 分布式内核：mini-Raft 正确性测试用例集
+
+| 文件 | 链接 | 说明 |
+|---|---|---|
+| 测试用例集 | [`22-mini-raft-test-suite.md`](./22-mini-raft-test-suite.md) | Test1-Test5（选举/日志复制/term monotonicity/snapshot）+ 网络模拟器伪代码 |
