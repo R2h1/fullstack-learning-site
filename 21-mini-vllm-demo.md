@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: 📖 阅读章节
-      link: /21-长矛一-AI 模型层与推理优化
+      link: /21-长矛一-AI模型层与推理优化
     - theme: alt
-      text: 💻 示例仓库
-      link: https://github.com/R2h1/mini-vllm-stub
+      text: 🧩 骨架代码
+      link: /21-mini-vllm-skeleton
 
 features:
   - icon: ⚙️
@@ -118,22 +118,3 @@ def allocate(self, request_id: int, num_required_blocks: int) -> BlockTable:
 - [nanoGPT](https://github.com/karpathy/nanoGPT)
 - [Transformers Inference Guide](https://huggingface.co/docs/transformers/main_classes/text_generation)
 
----
-
-<style scoped>
-.text-center {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 24px 0;
-}
-.vp-button.brand {
-  background: var(--vp-button-brand-bg);
-  color: var(--vp-button-brand-text);
-}
-.vp-button.alt {
-  border: 1px solid var(--vp-c-divider);
-  color: var(--vp-c-text-1);
-}
-</style>
