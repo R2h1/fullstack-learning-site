@@ -2,10 +2,10 @@
 import { withBase } from 'vitepress'
 
 const points = [
-  '27–34 周 · 四阶段',
+  '24 个月 · 三大局六阶段',
+  '10 项验收物，有链接才算',
   '逐项勾选，刷新不丢',
   '可切 Java 存量路线',
-  '两个可面试项目收口',
 ]
 </script>
 
@@ -14,8 +14,8 @@ const points = [
     <div class="entry-main">
       <div class="entry-title">🗺️ 交互式学习路线图</div>
       <p class="entry-desc">
-        章节解决「知识点」，路线图解决「时间和项目怎么排」：后端全栈 → AI 应用工程 → 生产级深化 → 面试整合，
-        每个阶段以一个可面试的项目收口，前端补强嵌在阶段里当质量门槛。
+        章节解决「知识点」，路线图解决「时间和项目怎么排」：宽环 9 个月打到 D3，双长矛 9 个月造到 D4，证据链 6 个月收到 D5。
+        每个阶段有明确验收物，交付物计数而不是学时计数。
       </p>
       <div class="entry-points">
         <span v-for="p in points" :key="p" class="point">{{ p }}</span>

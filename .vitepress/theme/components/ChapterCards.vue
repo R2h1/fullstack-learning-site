@@ -7,6 +7,7 @@ const tracks = {
   backend: { label: '后端', color: '#047857' },
   ai: { label: 'AI', color: '#7c3aed' },
   interview: { label: '面试', color: '#b45309' },
+  depth: { label: '长矛', color: '#a8452b' },
 }
 
 const chapters = [
@@ -28,6 +29,13 @@ const chapters = [
   { no: '16', title: 'Agent 与 MCP', desc: '工具调用 · Agent 编排 · MCP · 评估', link: '/16-Agent与MCP', track: 'ai' },
   { no: '17', title: 'AI 原生 UI 与端侧', desc: '生成式交互 · 人在环中 · 端侧推理', link: '/17-AI原生UI与端侧AI', track: 'ai' },
   { no: '18', title: '面试备战与行动清单', desc: '手写题 · 系统设计 · 项目深挖 · 90 天计划', link: '/18-面试备战与行动清单', track: 'interview' },
+  { no: '19', title: '深度分级框架 D1–D5', desc: '楼层坐标 · 判据细则 · 别把 D2 当终点', link: '/19-深度分级框架', track: 'depth' },
+  { no: '20', title: '训练计划与里程碑', desc: '24 个月 · 三轨道 · 10 项验收物', link: '/20-训练计划与里程碑', track: 'depth' },
+  { no: '21', title: '长矛一 · AI 模型层', desc: '手撕注意力 · LoRA 实证 · mini-vLLM', link: '/21-长矛一-AI模型层与推理优化', track: 'depth' },
+  { no: '22', title: '长矛二 · 分布式内核', desc: 'Raft · LSM · miniMQ，全带测试', link: '/22-长矛二-分布式内核', track: 'depth' },
+  { no: '23', title: '项目实操册', desc: '双旗舰 · 评估报告 · 红队护栏', link: '/23-项目实操册', track: 'depth' },
+  { no: '24', title: '证据与影响力', desc: 'OSS PR · 深度文 · 简历 · 模拟面', link: '/24-证据与影响力', track: 'depth' },
+  { no: '25', title: '算法军械库', desc: '14 类题型 · 100 天轨道 · 设计并发池', link: '/25-算法军械库', track: 'depth' },
 ]
 </script>
 

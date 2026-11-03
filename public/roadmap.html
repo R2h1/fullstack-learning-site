@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>前端转全栈 + AI 学习路线图</title>
-<meta name="description" content="4 年前端转全栈 + AI 的 27–34 周学习路线：后端全栈、AI 应用工程、生产级深化、面试整合四阶段，含可勾选进度与 Java 分支。">
+<title>前端转全栈 + AI 训练路线图 · 24 个月</title>
+<meta name="description" content="4 年前端转全栈 + AI 的 24 个月训练计划：三大局六阶段（D3 宽环 9 个月、D4 双长矛 9 个月、D5 证据链 6 个月），10 项验收物，含可勾选进度、Java 分支与算法每日轨道。">
 <meta name="theme-color" content="#0b0f17">
 <link rel="icon" href="logo.svg">
 <style>
@@ -353,7 +353,36 @@
   .m2 { background: linear-gradient(135deg, #22d3a7, #0d9c7a); }
   .m3 { background: linear-gradient(135deg, #f0a04b, #c9761f); }
   .m4 { background: linear-gradient(135deg, #b57bff, #7c3aed); }
+  .m5 { background: linear-gradient(135deg, #ff8f6b, #d95b3a); }
+  .m6 { background: linear-gradient(135deg, #f5c542, #c9942a); }
   .m-java { background: linear-gradient(135deg, #f06a8a, #c23b5b); }
+
+  /* 三大局分隔标签 */
+  .arc-label {
+    position: relative;
+    z-index: 1;
+    margin: 40px 0 18px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .arc-label b { color: var(--accent); margin-right: 10px; font-size: 14px; }
+  .arc-label.arc-2 b { color: #ff8f6b; }
+  .arc-label.arc-3 b { color: #f5c542; }
+
+  /* 页面内指向站点章节/脚手架的链接 */
+  .subcard-title a, .task-text a, .output a, .plain-list a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(79, 156, 249, 0.45);
+  }
+  .subcard-title a:hover, .task-text a:hover, .output a:hover, .plain-list a:hover {
+    color: #8ec2ff;
+    border-bottom-style: solid;
+  }
 
   .phase-body {
     background: var(--surface);
@@ -791,6 +820,8 @@
       <a href="#phase2">02 AI 应用</a>
       <a href="#phase3">03 生产深化</a>
       <a href="#phase4">04 面试整合</a>
+      <a href="#phase5">05 长矛深潜</a>
+      <a href="#phase6">06 证据收口</a>
       <a href="#stack">技术栈</a>
     </nav>
     <div class="global-progress">
@@ -805,18 +836,18 @@
 
   <!-- ============ Hero ============ -->
   <header class="hero">
-    <div class="eyebrow">4 年前端 · 转型路线</div>
+    <div class="eyebrow">4 年前端 · 24 个月 · 地表最强计划</div>
     <h1>从「写页面」到<br><em>全栈 + AI 工程</em></h1>
     <p>
-      核心原则：<strong>后端先行</strong>，AI 建立在可部署的后端之上，每个阶段以一个<strong>可面试的项目</strong>收口。
+      核心原则：<strong>交付物计数，不是学时计数</strong>。宽环到 D3 保证接得住任何问题，双长矛到 D4 保证追问第五层还有东西，证据链到 D5 让市场直接看见。
       前端补强不单独开线，而是<strong>嵌入每个阶段</strong>作为质量门槛。
     </p>
 
     <div class="metrics">
-      <div class="metric"><b>27–34 周</b><small>总周期（约 6–8 个月）</small></div>
-      <div class="metric"><b>12–15 h</b><small>每周投入</small></div>
-      <div class="metric"><b>2 个</b><small>面试级项目</small></div>
-      <div class="metric"><b>1 套</b><small>可迁移的架构叙事</small></div>
+      <div class="metric"><b>24 个月</b><small>三大局 · 六阶段（宽环→长矛→证据）</small></div>
+      <div class="metric"><b>12–15 h</b><small>每周投入 · 三轨并行（算法/教材/长矛）</small></div>
+      <div class="metric"><b>10 项</b><small>验收物清单，有链接才入表</small></div>
+      <div class="metric"><b>D3→D5</b><small>生产级打底 · 造得出定级 · 改得动收口</small></div>
     </div>
   </header>
 
@@ -828,23 +859,29 @@
 
   <!-- ============ 总览条 ============ -->
   <div class="overview">
-    <div class="overview-title">时间分配总览</div>
+    <div class="overview-title">时间分配总览（24 个月）</div>
     <div class="ov-bar">
-      <div class="ov-seg" style="flex: 11; background: linear-gradient(135deg,#4f9cf9,#2563c9);" title="后端全栈 10–12 周">后端全栈</div>
-      <div class="ov-seg" style="flex: 9; background: linear-gradient(135deg,#22d3a7,#0d9c7a);" title="AI 应用工程 8–10 周">AI 应用</div>
-      <div class="ov-seg" style="flex: 7; background: linear-gradient(135deg,#f0a04b,#c9761f);" title="生产级深化 6–8 周">生产深化</div>
-      <div class="ov-seg" style="flex: 3.5; background: linear-gradient(135deg,#b57bff,#7c3aed);" title="面试整合 3–4 周">面试</div>
+      <div class="ov-seg" style="flex: 3; background: linear-gradient(135deg,#4f9cf9,#2563c9);" title="大局一 · 宽环：后端全栈 约 3 个月">全栈</div>
+      <div class="ov-seg" style="flex: 2.5; background: linear-gradient(135deg,#22d3a7,#0d9c7a);" title="大局一 · 宽环：AI 应用工程 约 2.5 个月">AI</div>
+      <div class="ov-seg" style="flex: 2; background: linear-gradient(135deg,#f0a04b,#c9761f);" title="大局一 · 宽环：生产级深化 约 2 个月">深化</div>
+      <div class="ov-seg" style="flex: 1.5; background: linear-gradient(135deg,#b57bff,#7c3aed);" title="大局一 · 宽环：面试整合 约 1.5 个月">面试</div>
+      <div class="ov-seg" style="flex: 9; background: linear-gradient(135deg,#ff8f6b,#d95b3a);" title="大局二 · 长矛：第 10–18 月">长矛深潜 D4</div>
+      <div class="ov-seg" style="flex: 6; background: linear-gradient(135deg,#f5c542,#c9942a);" title="大局三 · 证据：第 19–24 月">证据收口 D5</div>
     </div>
     <div class="ov-legend">
-      <span><i style="background:#4f9cf9"></i>阶段一 · 后端全栈</span>
-      <span><i style="background:#22d3a7"></i>阶段二 · AI 应用工程</span>
-      <span><i style="background:#f0a04b"></i>阶段三 · 生产级深化</span>
-      <span><i style="background:#b57bff"></i>阶段四 · 面试整合</span>
+      <span><i style="background:#4f9cf9"></i>01 后端全栈</span>
+      <span><i style="background:#22d3a7"></i>02 AI 应用</span>
+      <span><i style="background:#f0a04b"></i>03 生产深化</span>
+      <span><i style="background:#b57bff"></i>04 面试整合</span>
+      <span><i style="background:#ff8f6b"></i>05 长矛深潜</span>
+      <span><i style="background:#f5c542"></i>06 证据收口</span>
     </div>
   </div>
 
   <!-- ============ 时间轴 ============ -->
   <div class="timeline">
+
+    <div class="arc-label"><b>大局一 · 宽环</b>第 1–9 月｜教材环 01–18 打到 D3，项目一上线带真实数字，算法每日轨道贯穿全程；Java 分支作为可选支线加在这里。</div>
 
     <!-- ===== 阶段一 ===== -->
     <section class="phase" id="phase1">
@@ -1173,6 +1210,152 @@
       </div>
     </section>
 
+    <div class="arc-label arc-2"><b>大局二 · 双长矛</b>第 10–18 月｜AI 推理层 + 分布式内核两把 D4 长矛，四个引擎仓库全部带正确性测试；项目二 RAG 用评估与红队收口（详见学习站 <a href="20-训练计划与里程碑.html">20 章</a>）。</div>
+
+    <!-- ===== 阶段五 · 长矛深潜 ===== -->
+    <section class="phase" id="phase5">
+      <div class="marker m5">05</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase5-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              长矛深潜
+              <span class="weeks">第 10–18 月</span>
+            </div>
+            <div class="phase-goal">目标：造出两把 D4 长矛——AI 推理层与分布式内核，引擎仓库全部带正确性测试与基准</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="长矛深潜阶段进度" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/10</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase5-body">
+          <div class="badges">
+            <span class="badge">PyTorch</span>
+            <span class="badge">nanoGPT</span>
+            <span class="badge">vLLM</span>
+            <span class="badge">LoRA / QLoRA</span>
+            <span class="badge">Raft</span>
+            <span class="badge">LSM</span>
+            <span class="badge">RAGAS</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">长矛一 · AI 模型层（教材：<a href="21-长矛一-AI模型层与推理优化.html">21 章</a>，起点：<a href="21-mini-vllm-skeleton.html">骨架</a>）</div>
+              <label class="task"><input type="checkbox" id="p5t1"><span class="task-text"><b>手撕注意力</b>：单头/多头、causal mask、KV Cache 增量解码，配数值测试</span></label>
+              <label class="task"><input type="checkbox" id="p5t2"><span class="task-text"><b>训 mini-GPT</b>：nanoGPT 路线，loss 曲线 + 温度/top-p 对照实验</span></label>
+              <label class="task"><input type="checkbox" id="p5t3"><span class="task-text"><b>QLoRA 微调实证</b>：zero-shot/few-shot/微调三列 eval + 成本临界点结论</span></label>
+              <label class="task"><input type="checkbox" id="p5t4"><span class="task-text"><b>vLLM 部署压测</b>：TTFT/TPOT/吞吐曲线，对比裸 transformers 推理</span></label>
+              <label class="task"><input type="checkbox" id="p5t5"><span class="task-text"><b>mini-vLLM</b>：continuous batching + KV 分页，确定性与无泄漏两项测试全绿</span></label>
+              <div class="subcard-title" style="margin-top:16px;">长矛二 · 分布式内核（教材：<a href="22-长矛二-分布式内核.html">22 章</a>，起点：<a href="22-mini-raft-test-suite.html">测试套件</a>）</div>
+              <label class="task"><input type="checkbox" id="p5t6"><span class="task-text"><b>手写 Raft</b>：选主 + 日志复制，网络分区/节点宕机场景测试通过</span></label>
+              <label class="task"><input type="checkbox" id="p5t7"><span class="task-text"><b>手写 miniLSM</b>：WAL 崩溃恢复 + compaction 一致性 + 写放大基准</span></label>
+              <label class="task"><input type="checkbox" id="p5t8"><span class="task-text"><b>手写 minimq</b>：at-least-once + 重试 + 死信，接进项目一条真实业务链</span></label>
+              <div class="subcard-title" style="margin-top:16px;">项目二深化（教材：<a href="23-项目实操册.html">23 章</a>，工具：<a href="23-rag-evaluation-toolkit.html">评估链</a>）</div>
+              <label class="task"><input type="checkbox" id="p5t9"><span class="task-text"><b>RAG 评估</b>：golden set ≥80 条，Recall@k/MRR/Faithfulness 基线 + 三轮优化对比图</span></label>
+              <label class="task"><input type="checkbox" id="p5t10"><span class="task-text"><b>红队自测</b>：注入/越狱/工具滥用/数据投毒/DoS 五类攻击面，用例进回归集</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">面试锚点（要能讲出来）</div>
+                <ul class="plain-list">
+                  <li>白板推导 KV Cache 分页：显存为什么爆、PagedAttention 怎么解</li>
+                  <li>Raft 多数派 vs Kafka ISR：<b>同一种病的两套药</b>，各付什么代价</li>
+                  <li>微调还是 RAG：决策树 + <b>成本临界点</b>的真实数字</li>
+                  <li>讲一次「指标变好但体验变差」的评估校准故事</li>
+                </ul>
+              </div>
+
+              <div class="subcard purple" style="margin-top:14px;">
+                <div class="subcard-title">执行纪律</div>
+                <ul class="plain-list">
+                  <li>每周 4 次 × 90–120 min 长矛轨道，<b>必须产出 commit</b></li>
+                  <li>有 repo 无测试 = 没写完；<b>测试是唯一的完成定义</b></li>
+                  <li>引擎烂尾就停新坑，先用测试收口上一个</li>
+                  <li>每个引擎一篇设计 README（取舍记录，面试直接用）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="output">
+            <div><b>阶段产出</b>：验收物 3–7 全部有仓库和报告——mini-vLLM、Raft、LSM、MQ 四个引擎 + 微调实证 + RAG 评估/红队报告。<br>追问第五层从这里开始才是你的舒适区。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="arc-label arc-3"><b>大局三 · 证据链</b>第 19–24 月｜开源 PR、深度写作、简历重写、模拟面试配额——把实力变成 offer，方法见学习站 <a href="24-证据与影响力.html">24 章</a>。</div>
+
+    <!-- ===== 阶段六 · 证据收口 ===== -->
+    <section class="phase" id="phase6">
+      <div class="marker m6">06</div>
+      <div class="phase-body">
+        <div class="phase-head" role="button" tabindex="0" aria-expanded="true" aria-controls="phase6-body" onclick="togglePhase(this)" onkeydown="phaseKeydown(event)">
+          <div class="phase-head-left">
+            <div class="phase-title">
+              证据收口
+              <span class="weeks">第 19–24 月</span>
+            </div>
+            <div class="phase-goal">目标：D4 产出变成市场看得见的 D5 证据——PR merge + 10 篇深度文 + 简历约面率 ≥40%</div>
+            <div class="phase-progress">
+              <div class="progress-track" role="progressbar" aria-label="证据收口阶段进度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill"></div></div>
+              <span class="progress-text">0/6</span>
+            </div>
+          </div>
+          <div class="toggle" aria-hidden="true">▼</div>
+        </div>
+
+        <div class="collapsible" id="phase6-body">
+          <div class="badges">
+            <span class="badge">开源贡献</span>
+            <span class="badge">技术写作</span>
+            <span class="badge">简历工程</span>
+            <span class="badge">模拟面试</span>
+          </div>
+
+          <div class="phase-cols">
+            <div class="subcard">
+              <div class="subcard-title">核心任务（教材：<a href="24-证据与影响力.html">24 章</a>）</div>
+              <label class="task"><input type="checkbox" id="p6t1"><span class="task-text"><b>开源 PR</b>：选 LangGraph/vLLM/Langfuse/BullMQ，最小复现 → 非 docs PR 被 merge ≥1</span></label>
+              <label class="task"><input type="checkbox" id="p6t2"><span class="task-text"><b>深度文 ×10</b>：故障复盘/引擎复现/评测/转型叙事，≥1 篇被同行转发</span></label>
+              <label class="task"><input type="checkbox" id="p6t3"><span class="task-text"><b>简历三版重写</b>：每条 bullet 可被追问三层，用约面率迭代</span></label>
+              <label class="task"><input type="checkbox" id="p6t4"><span class="task-text"><b>模拟面试配额</b>：算法 10 + 系统设计 5 + 项目深挖 5 + 行为面 3，录屏复盘</span></label>
+              <label class="task"><input type="checkbox" id="p6t5"><span class="task-text"><b>JD 对照投递</b>：目标公司高频词逐个映射验收物表，缺项开小坑</span></label>
+              <label class="task"><input type="checkbox" id="p6t6"><span class="task-text"><b>验收物总表 10 项全绿</b>：缺链接不算完成（<a href="20-训练计划与里程碑.html">20 章清单</a>）</span></label>
+            </div>
+
+            <div>
+              <div class="subcard orange">
+                <div class="subcard-title">毕业判定</div>
+                <ul class="plain-list">
+                  <li>约面率 ≥40%，或<b>直达二/三面</b>（内推与作品链接生效的证据）</li>
+                  <li>拿到 2–3 家同档 offer——此时的问题是<b>选哪家</b>，不是能不能过</li>
+                  <li>项目一/二持续运营：留存、营收或成本下降至少一个真实指标</li>
+                </ul>
+              </div>
+
+              <div class="subcard purple" style="margin-top:14px;">
+                <div class="subcard-title">反脆弱</div>
+                <ul class="plain-list">
+                  <li>每半年滚动更新证据：新 PR / 新文 / 项目新数字</li>
+                  <li>简历是证据的<b>目录页</b>，不是能力宣言</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="output">
+            <div><b>阶段产出</b>：一份每条都能被追问三层的简历 + 被 merge 的 PR + 有转发的深度文。<br>「地表最强」不是感觉，是 20 章验收物表上的计数。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div><!-- /timeline -->
 
   <!-- ============ 技术栈汇总 ============ -->
@@ -1213,6 +1396,31 @@
           <span class="chip core">LangGraph</span>
           <span class="chip core">RAG</span>
           <span class="chip core">Langfuse</span>
+          <span class="chip core">vLLM</span>
+          <span class="chip core">LoRA / QLoRA</span>
+          <span class="chip core">RAGAS</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <h3>深潜引擎（长矛 · D4）</h3>
+        <div class="stack-items">
+          <span class="chip core">mini-vLLM</span>
+          <span class="chip core">nanoGPT</span>
+          <span class="chip core">mini-Raft</span>
+          <span class="chip core">miniLSM</span>
+          <span class="chip core">minimq</span>
+          <span class="chip core">PagedAttention</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <h3>算法门票（每日轨道）</h3>
+        <div class="stack-items">
+          <span class="chip core">LeetCode Hot 100</span>
+          <span class="chip core">代码随想录</span>
+          <span class="chip core">14 类题型地图</span>
+          <span class="chip core">设计 / 并发池</span>
         </div>
       </div>
 
@@ -1253,7 +1461,7 @@
 </main>
 
 <footer class="footer wrap">
-  <div>前端 4 年 → 全栈 + AI · 交互式学习路线图</div>
+  <div>前端 4 年 → 地表最强全栈 + AI · 24 个月训练路线 · 验收物计数</div>
   <button class="reset-btn" onclick="resetAll()">重置全部进度</button>
 </footer>
 
