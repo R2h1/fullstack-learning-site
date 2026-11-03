@@ -251,3 +251,17 @@ if (!ALLOWED_TOOLS.includes(call.function.name)) return { ok: false, error: '不
 - [ ] 建 eval 集做"改前 vs 改后"回归对比（成功率/步数）
 - [ ] 跑通最小 MCP server 并说明安全边界
 - [ ] 给 Agent 配好：权限白名单 + 后置校验 + 高危动作人确认
+
+---
+
+## 4. 深潜入口
+
+> [!NOTE] **D4 深潜入口**
+> Agent 的推理成本怎么控？看 **[21·AI 模型层与推理优化](./21-mini-vllm-skeleton.md)** — vLLM 压测报告中的 TTFT/TPOT/cost，用工程手段把每轮对话成本压下来。
+
+#### ✅ D4 达标标准
+
+**D4：**
+- [ ] 画出 agent loop → vLLM 部署 → SSE 流式反馈的完整数据流
+- [ ] 跑通一次 mini-vLLM 调度器测试，解释 continuous batching 如何降低 agent 调用延迟
+- [ ] 输出 1 篇深度复盘文：「我给 agent 配了 vLLM 之后，token 成本降了 40%」

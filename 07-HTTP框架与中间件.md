@@ -268,3 +268,10 @@ fastify.setErrorHandler((err, req, reply) => {
 - [ ] 写完整 schema（body/params/response）+ setErrorHandler 统一错误
 - [ ] 写 fastify-plugin 穿透封装，讲 encapsulation 对路由组织的影响
 - [ ] 给示例服务加一个路由插件（prefix + schema + 统一错误），对照生产级 routes/ 组织方式
+
+---
+
+## 深潜入口（D4）
+
+> [!NOTE] **D4 深潜入口**
+> 框架会换，请求链路不变。造一遍 **[22·分布式内核](22-长矛二-分布式内核.md)** 的 minimq 后，你会从「写中间件」升级到「设计中间件的人怎么想问题」——拦截器链、背压、超时传播全是同一族问题。

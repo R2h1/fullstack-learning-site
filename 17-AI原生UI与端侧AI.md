@@ -246,3 +246,10 @@ async function answerLocalFirst(q: string) {
 - [ ] 用 Transformers.js 在浏览器跑一个本地任务（embedding/OCR/分类任选），量化"加载时间 vs 推理耗时"
 - [ ] 为端侧模型设计加载缓存 + 进度 + 失败兜底，说明降级路径
 - [ ] 画"端云协同"架构图并解释每个决策，写一段带 tier 统计的端云路由
+
+---
+
+## 深潜入口（D4）
+
+> [!NOTE] **D4 深潜入口**
+> 流式 UI 的每个卡顿最终都追溯到服务侧：首 token 慢是 prefill，吐字慢是 decode。**[21·AI 模型层与推理优化](21-长矛一-AI模型层与推理优化.md)** 的 mini-vLLM 压测报告会告诉你 TTFT/TPOT 的真实构成——前端知道数据从哪来慢，优化才有靶子。

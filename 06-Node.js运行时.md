@@ -351,3 +351,10 @@ process.on('unhandledRejection', (reason) => {
 - [ ] 用 AsyncLocalStorage 实现请求级 traceId 贯穿日志
 - [ ] 给服务配 uncaughtException/unhandledRejection 兜底 + 进程守护
 - [ ] 用 --inspect/heapdump 定位一次 Node 侧内存问题
+
+---
+
+## 深潜入口（D4）
+
+> [!NOTE] **D4 深潜入口**
+> 本章教你「用」Node 运行时。再往下两层：**[21·AI 模型层与推理优化](21-长矛一-AI模型层与推理优化.md)** 把事件循环的经验迁移到 continuous batching 调度器（mini-vLLM 的 step 循环就是扩量版事件循环）；**[22·分布式内核](22-长矛二-分布式内核.md)** 的 minimq 用同一套「日志+队列」思想造工业件。

@@ -17,7 +17,7 @@ export default defineConfig({
 
   // AGENTS / CLAUDE / README 是仓库内部说明，不该被当成课程页发布
   // （不排除会被构建成页面，同时污染本地搜索索引）
-  srcExclude: ['AGENTS.md', 'CLAUDE.md', 'README.md'],
+  srcExclude: ['AGENTS.md', 'CLAUDE.md', 'README.md', 'P0-scaffolds-summary.md', 'chapters-to-training-mapping.md'],
   head: [
     ['link', { rel: 'icon', href: `${base}logo.svg` }],
     ['meta', { name: 'theme-color', content: '#3451b2' }],
