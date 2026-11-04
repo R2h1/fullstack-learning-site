@@ -2,9 +2,8 @@
 layout: home
 
 hero:
-  name: 全栈 × AI
-  text: 随随便便过面试只是底线
-  tagline: 18 章教材环 + 7 章长矛操练册：D3 宽环 → D4 双长矛 → D5 证据链，地表最强候选人的完整训练系统。
+  text: 全栈 × AI
+  tagline: 随随便便过面试只是底线，地表最强才是目标——18 章教材环 + 7 章长矛操练册，D3 宽环 → D4 双长矛 → D5 证据链的完整训练系统。
   actions:
     - theme: brand
       text: 🚀 开始学习
