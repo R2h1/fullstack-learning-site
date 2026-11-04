@@ -881,7 +881,7 @@
   <!-- ============ 时间轴 ============ -->
   <div class="timeline">
 
-    <div class="arc-label"><b>大局一 · 宽环</b>第 1–9 月｜教材环 01–18 打到 D3，项目一上线带真实数字，算法每日轨道贯穿全程；Java 分支作为可选支线加在这里。</div>
+    <div class="arc-label"><b>大局一 · 宽环</b>第 1–9 月｜教材环 01–18 到 D2、核心章到 D3，项目一上线带真实数字，算法每日轨道贯穿全程；Java 分支作为可选支线加在这里。</div>
 
     <!-- ===== 阶段一 ===== -->
     <section class="phase" id="phase1">
@@ -1081,7 +1081,7 @@
           </div>
 
           <div class="output">
-            <div><b>阶段产出</b>：一个生产级 RAG 系统 + AI 前端（流式对话、引用展示）。<br>前端 4 年经验的优势在这里直接兑现：流式 UI、对话状态管理、交互体验设计。</div>
+            <div><b>阶段产出</b>：RAG 全链路 + AI 前端（流式对话、引用展示），带评估基线。<br>前端 4 年经验的优势在这里直接兑现：流式 UI、对话状态管理、交互体验设计。<b>生产级完整版</b>（红队 / 成本看板 / 真实用户）在阶段 05 收口。</div>
           </div>
         </div>
       </div>
@@ -1253,7 +1253,7 @@
               <div class="subcard-title" style="margin-top:16px;">长矛二 · 分布式内核（教材：<a href="22-长矛二-分布式内核.html">22 章</a>，起点：<a href="22-mini-raft-test-suite.html">测试套件</a>）</div>
               <label class="task"><input type="checkbox" id="p5t6"><span class="task-text"><b>手写 Raft</b>：选主 + 日志复制，网络分区/节点宕机场景测试通过</span></label>
               <label class="task"><input type="checkbox" id="p5t7"><span class="task-text"><b>手写 miniLSM</b>：WAL 崩溃恢复 + compaction 一致性 + 写放大基准</span></label>
-              <label class="task"><input type="checkbox" id="p5t8"><span class="task-text"><b>手写 minimq</b>：at-least-once + 重试 + 死信，接进项目一条真实业务链</span></label>
+              <label class="task"><input type="checkbox" id="p5t8"><span class="task-text"><b>手写 miniMQ</b>：at-least-once + 重试 + 死信，接进项目一条真实业务链</span></label>
               <div class="subcard-title" style="margin-top:16px;">项目二深化（教材：<a href="23-项目实操册.html">23 章</a>，工具：<a href="23-rag-evaluation-toolkit.html">评估链</a>）</div>
               <label class="task"><input type="checkbox" id="p5t9"><span class="task-text"><b>RAG 评估</b>：golden set ≥80 条，Recall@k/MRR/Faithfulness 基线 + 三轮优化对比图</span></label>
               <label class="task"><input type="checkbox" id="p5t10"><span class="task-text"><b>红队自测</b>：注入/越狱/工具滥用/数据投毒/DoS 五类攻击面，用例进回归集</span></label>
@@ -1409,7 +1409,7 @@
           <span class="chip core">nanoGPT</span>
           <span class="chip core">mini-Raft</span>
           <span class="chip core">miniLSM</span>
-          <span class="chip core">minimq</span>
+          <span class="chip core">miniMQ</span>
           <span class="chip core">PagedAttention</span>
         </div>
       </div>
@@ -1444,8 +1444,8 @@
       <p>AI 应用的质量高度依赖后端工程能力。跳过后端直接做 AI，会在「服务怎么部署、并发怎么扛」上暴露短板。</p>
     </div>
     <div class="principle">
-      <h3>每个阶段必须有一个项目</h3>
-      <p>读书笔记不会让你通过面试，可运行、可展示、可复盘的项目才会。两个项目就是两个锚点。</p>
+      <h3>每个阶段必须有交付物</h3>
+      <p>读书笔记不会让你通过面试，可运行、可展示、可复盘的东西才会：宽环期是两个项目锚点，长矛期是带测试的引擎仓库，证据期是被 merge 的 PR 和被转发的文章——没有一样可以停在「学过」。</p>
     </div>
     <div class="principle">
       <h3>前端补强不单独开线</h3>
