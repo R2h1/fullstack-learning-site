@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 📖 阅读章节
-      link: /21-长矛一-AI模型层与推理优化
+      link: /21-AI模型层与推理优化
     - theme: alt
       text: 🧩 骨架代码
       link: /21-mini-vllm-skeleton

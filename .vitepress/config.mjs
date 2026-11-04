@@ -85,7 +85,7 @@ export default defineConfig({
       { text: 'AI 工程', link: '/15-LLM与RAG' },
       { text: '面试备战', link: '/18-面试备战与行动清单' },
       { text: '优质资源', link: '/resources' },
-      { text: '长矛区', link: '/19-深度分级框架' },
+      { text: '深潜实操', link: '/19-深度分级框架' },
     ],
 
     sidebar: [
@@ -122,12 +122,12 @@ export default defineConfig({
         ],
       },
       {
-        text: '长矛区',
+        text: '深潜实操',
         items: [
           { text: '19 · D 级分级框架', link: '/19-深度分级框架' },
           { text: '20 · 训练计划与里程碑', link: '/20-训练计划与里程碑' },
-          { text: '21 · AI 模型层与推理优化', link: '/21-长矛一-AI模型层与推理优化' },
-          { text: '22 · 分布式内核', link: '/22-长矛二-分布式内核' },
+          { text: '21 · AI 模型层与推理优化', link: '/21-AI模型层与推理优化' },
+          { text: '22 · 分布式内核', link: '/22-分布式内核' },
           { text: '23 · 项目实操册', link: '/23-项目实操册' },
           { text: '24 · 证据与影响力', link: '/24-证据与影响力' },
           { text: '25 · 算法军械库', link: '/25-算法军械库' },

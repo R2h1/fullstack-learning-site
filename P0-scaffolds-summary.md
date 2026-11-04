@@ -1,6 +1,6 @@
 # P0 脚手架交付总结
 
-这是本轮 P0 任务的完整产出清单，所有脚手架文件已生成并部分上线。你可以直接用它作为长矛区（19–25 章）的代码起点。
+这是本轮 P0 任务的完整产出清单，所有脚手架文件已生成并部分上线。你可以直接用它作为深潜实操（19–25 章）的代码起点。
 
 ---
 
@@ -26,7 +26,7 @@
 |---|---|
 | mini-vLLM 调度器骨架 | https://r2h1.github.io/fullstack-learning-site/21-mini-vllm-skeleton |
 | SaaS 后端脚手架 | https://r2h1.github.io/fullstack-learning-site/23-saas-backend-scaffold |
-| 长矛区导航入口 | https://r2h1.github.io/fullstack-learning-site/#长矛区 |
+| 深潜实操导航入口 | https://r2h1.github.io/fullstack-learning-site/#深潜实操 |
 
 **注意**: 其余 3 个文件（mini-Raft、RAG 工具链、算法题单）因 GitHub 网络连接问题暂未推送到 gh-pages，但已全部本地 commit (`f3c970b` / `11ddb5a`)，稍后可手动推送：
 
@@ -45,9 +45,9 @@ git push https://github.com/R2h1/fullstack-learning-site.git main
 
 ## 🧱 脚手架之间的关联关系
 
-### 教材环 → 长矛区映射
+### 基础课 → 深潜实操映射
 
-| 教材章节 | 长矛对应 | 脚手架链接 |
+| 教材章节 | 深潜对应 | 脚手架链接 |
 |---|---|---|
 | 15 章 (LLM/RAG) | 21 章 (推理优化) + 23 章 (评估工程) | mini-vLLM 骨架 / RAG 评估工具 |
 | 11 章 (数据库) | 22 章 (LSM/MQ) | mini-Raft 测试套件 |
@@ -75,7 +75,7 @@ npm run start:dev
 
 **目标**: Week 1–2 完成认证模块 + RBAC 守卫 + 任务 CRUD API。
 
-### B. 同时推进长矛一（AI 推理层）
+### B. 同时推进深潜一（AI 推理层）
 
 用 **21-mini-vllm-skeleton.md** 的伪代码写 scheduler.py v1.0：
 
@@ -131,7 +131,7 @@ git push https://github.com/R2h1/fullstack-learning-site.git main
 
 ### P4：路线图 roadmap.html 升级到 24 个月三阶段
 
-同步更新独立 HTML 路线图的里程碑，让它和长矛区时间表一致。
+同步更新独立 HTML 路线图的里程碑，让它和深潜实操时间表一致。
 
 ---
 
@@ -139,7 +139,7 @@ git push https://github.com/R2h1/fullstack-learning-site.git main
 
 | 板块 | 进度 |
 |---|---|
-| **长矛区文档** | 100%（7 章全写完） |
+| **深潜实操文档** | 100%（7 章全写完） |
 | **脚手架代码** | 100%（5 个文件齐全） |
 | **GitHub Pages 发布** | 60%（2/5 已上线） |
 | **PR 被 merge 记录** | 0%（需后续实战） |

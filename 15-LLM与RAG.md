@@ -332,4 +332,4 @@ function evaluate(searchFn) {
 ## 深潜入口（D4）
 
 > [!NOTE] **D4 深潜入口**
-> 本章打通「调用 → 流式 → RAG 链路」，这是 D2–D3 层。再往下两层：**[21·AI 模型层与推理优化](21-长矛一-AI模型层与推理优化.md)** 手撕注意力与 mini-vLLM，把延迟与成本模型从背诵变成推导；工业级评估与安全护栏的验收物在 **[23·项目实操册](23-项目实操册.md)**（golden set / Recall@k / Faithfulness / 红队清单），脚手架直接看 **[RAG 评估工具链](23-rag-evaluation-toolkit.md)**。
+> 本章打通「调用 → 流式 → RAG 链路」，这是 D2–D3 层。再往下两层：**[21·AI 模型层与推理优化](21-AI模型层与推理优化.md)** 手撕注意力与 mini-vLLM，把延迟与成本模型从背诵变成推导；工业级评估与安全护栏的验收物在 **[23·项目实操册](23-项目实操册.md)**（golden set / Recall@k / Faithfulness / 红队清单），脚手架直接看 **[RAG 评估工具链](23-rag-evaluation-toolkit.md)**。

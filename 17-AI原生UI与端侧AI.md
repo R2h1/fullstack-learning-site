@@ -252,4 +252,4 @@ async function answerLocalFirst(q: string) {
 ## 深潜入口（D4）
 
 > [!NOTE] **D4 深潜入口**
-> 流式 UI 的每个卡顿最终都追溯到服务侧：首 token 慢是 prefill，吐字慢是 decode。**[21·AI 模型层与推理优化](21-长矛一-AI模型层与推理优化.md)** 的 mini-vLLM 压测报告会告诉你 TTFT/TPOT 的真实构成——前端知道数据从哪来慢，优化才有靶子。
+> 流式 UI 的每个卡顿最终都追溯到服务侧：首 token 慢是 prefill，吐字慢是 decode。**[21·AI 模型层与推理优化](21-AI模型层与推理优化.md)** 的 mini-vLLM 压测报告会告诉你 TTFT/TPOT 的真实构成——前端知道数据从哪来慢，优化才有靶子。
