@@ -55,7 +55,7 @@ features:
 | **19 · 深度分级框架** | 能用 D1–D5 给每一项能力定坐标，并说出下一级的具体交付物 |
 | **20 · 训练计划与里程碑** | 24 个月三阶段执行表；每月 journal 复盘一次；验收物清单 10 项填绿 |
 | **21 · AI 模型层与推理优化** | mini-GPT 实证 + LoRA 微调报告 + vLLM 压测 + mini-vLLM 调度器仓库（连续批处理 + KV Cache 分页）；起点：[骨架代码](21-mini-vllm-skeleton.md) |
-| **22 · 分布式内核** | mini-Raft（带正确性测试，套件见 [测试用例集](22-mini-raft-test-suite.md)）+ miniLSM + minimq 三件引擎仓库 |
+| **22 · 分布式内核** | mini-Raft（带正确性测试，套件见 [测试用例集](22-mini-raft-test-suite.md)）+ miniLSM + miniMQ 三件引擎仓库 |
 | **23 · 项目实操册** | 项目一（SaaS 后端，脚手架见 [saas-backend-scaffold](23-saas-backend-scaffold.md)）：真实用户 + QPS/P99/成本 + 故障复盘<br>项目二（RAG，工具见 [评估工具链](23-rag-evaluation-toolkit.md)）：golden set 评估报告 + 红队报告 + 成本账单 |
 | **24 · 证据与影响力** | ≥1 个非 docs PR 被 merge + 10 篇深度文 + 简历每条 bullet 能被追问三层 |
 | **25 · 算法军械库** | 100 天轨道（medium 20min AC 率 >70%）；[14 类题单目录](25-algo-question-bank.md) + 设计并发池 |
